@@ -1,6 +1,6 @@
 # Harp Analog Input
 
-This device reads 4 analog signals with 16 bits ersolotion and very low noise.
+This device samples simultaneously up to 4 analog signals with 16 bits resolution, low noise and and analog input range of ±10 V for all channels.
 
 # Licensing
 
