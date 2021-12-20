@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.6.2">
+<eagle version="9.5.1">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -210,19 +210,18 @@ Platform</text>
 <wire x1="30.5" y1="66" x2="30.5" y2="80" width="0.2032" layer="41"/>
 <wire x1="77.763934375" y1="0" x2="80" y2="2.236065625" width="0" layer="20" curve="90"/>
 <wire x1="80" y1="2.236065625" x2="80" y2="24.75" width="0" layer="20"/>
-<text x="56.71518125" y="69.296703125" size="1.016" layer="21" font="vector" ratio="12" rot="SR0" align="center">output
-voltage
-selector</text>
+<text x="56.46518125" y="70.296703125" size="1.016" layer="21" font="vector" ratio="12" rot="SR0" align="center">digital outputs
+voltage selector</text>
 <text x="61.08744375" y="72.774265625" size="1.016" layer="21" font="vector" ratio="15" rot="SR0">5V</text>
 <text x="50.327321875" y="72.76088125" size="1.016" layer="21" font="vector" ratio="15" rot="SR0">3V</text>
 <wire x1="27" y1="66" x2="30.5" y2="66" width="0.2032" layer="41"/>
 <text x="70.25" y="51.545621875" size="1.27" layer="21" font="vector" ratio="15" rot="SR0">GND</text>
-<text x="70.25" y="41.1429" size="1.27" layer="21" font="vector" ratio="15" rot="SR0">DO2</text>
-<text x="70.25" y="37.6429" size="1.27" layer="21" font="vector" ratio="15" rot="SR0">DO3</text>
+<text x="70.25" y="41.1429" size="1.27" layer="21" font="vector" ratio="15" rot="SR0">DO1</text>
+<text x="70.25" y="37.6429" size="1.27" layer="21" font="vector" ratio="15" rot="SR0">DO0</text>
 <text x="70.25" y="34.1429" size="1.27" layer="21" font="vector" ratio="15" rot="SR0">GND</text>
 <text x="70.25" y="30.3929" size="1.27" layer="21" font="vector" ratio="15" rot="SR0">DI0</text>
-<text x="70.25" y="48.1429" size="1.27" layer="21" font="vector" ratio="15" rot="SR0">DO0</text>
-<text x="70.25" y="44.670621875" size="1.27" layer="21" font="vector" ratio="15" rot="SR0">DO1</text>
+<text x="70.25" y="48.1429" size="1.27" layer="21" font="vector" ratio="15" rot="SR0">DO3</text>
+<text x="70.25" y="44.670621875" size="1.27" layer="21" font="vector" ratio="15" rot="SR0">DO2</text>
 <text x="70.25" y="27.170621875" size="1.27" layer="21" font="vector" ratio="15" rot="SR0">GND</text>
 <text x="7.61" y="6.8098" size="1.524" layer="21" font="vector" ratio="15" rot="R90">IN_A0</text>
 <text x="61.11" y="6.8098" size="1.524" layer="21" font="vector" ratio="15" rot="R90">IN_A3</text>
@@ -5996,13 +5995,13 @@ Your Eurocircuits Team
 <wire x1="64.32265" y1="30.59814375" x2="61.83935625" y2="30.59814375" width="0.3048" layer="1"/>
 <wire x1="61.5" y1="30.9375" x2="61.83935625" y2="30.59814375" width="0.3048" layer="1"/>
 <via x="61.5" y="30.9375" extent="1-16" drill="0.3" diameter="0.6"/>
-<wire x1="61.5" y1="69.5" x2="61.5" y2="66.5" width="0.6096" layer="16"/>
+<wire x1="61.5" y1="68.25" x2="61.5" y2="66.5" width="0.6096" layer="16"/>
 <wire x1="61.5" y1="66.5" x2="61.5" y2="44.5" width="0.6096" layer="16"/>
 <wire x1="53.96" y1="73.25" x2="53.96" y2="70.04" width="0.4064" layer="1"/>
 <wire x1="53.96" y1="70.04" x2="54.25" y2="69.75" width="0.4064" layer="1"/>
-<wire x1="54.25" y1="69.75" x2="61.25" y2="69.75" width="0.4064" layer="1"/>
-<wire x1="61.5" y1="69.5" x2="61.25" y2="69.75" width="0.4064" layer="1"/>
-<via x="61.5" y="69.5" extent="1-16" drill="0.3" diameter="0.6"/>
+<wire x1="54.25" y1="69.75" x2="60" y2="69.75" width="0.4064" layer="1"/>
+<wire x1="61.5" y1="68.25" x2="60" y2="69.75" width="0.4064" layer="1"/>
+<via x="61.5" y="68.25" extent="1-16" drill="0.3" diameter="0.6"/>
 <wire x1="46.4271" y1="60.0729" x2="47.1181" y2="60.0729" width="0.2032" layer="1"/>
 <wire x1="44.65" y1="60.75" x2="45.75" y2="60.75" width="0.2032" layer="1"/>
 <wire x1="45.75" y1="60.75" x2="46.4271" y2="60.0729" width="0.2032" layer="1"/>
@@ -6678,7 +6677,7 @@ Your Eurocircuits Team
 <via x="65.0625" y="59" extent="1-16" drill="0.3" diameter="0.6"/>
 <wire x1="65.3125" y1="58.75" x2="65.0625" y2="59" width="0.2032" layer="16"/>
 </signal>
-<signal name="OUT00">
+<signal name="OUT03">
 <contactref element="IC8" pad="2"/>
 <contactref element="IC6" pad="5"/>
 <wire x1="63.3819" y1="52.343090625" x2="63.3194" y2="52.280590625" width="0.2032" layer="1"/>
@@ -7153,7 +7152,7 @@ Your Eurocircuits Team
 <wire x1="66.0501" y1="36.55" x2="67.3375" y2="36.55" width="0.2032" layer="1"/>
 <wire x1="67.3375" y1="36.55" x2="67.6" y2="36.8125" width="0.2032" layer="1"/>
 </signal>
-<signal name="OUT01">
+<signal name="OUT02">
 <contactref element="IC9" pad="2"/>
 <contactref element="IC6" pad="40"/>
 <wire x1="63.4499" y1="47.25" x2="62.3125" y2="47.25" width="0.2032" layer="1"/>
@@ -7165,7 +7164,7 @@ Your Eurocircuits Team
 <wire x1="55.2684" y1="53.052" x2="62.1355" y2="53.052" width="0.2032" layer="1"/>
 <wire x1="62.1355" y1="53.052" x2="62.3125" y2="52.875" width="0.2032" layer="1"/>
 </signal>
-<signal name="OUT02">
+<signal name="OUT01">
 <contactref element="IC10" pad="2"/>
 <contactref element="IC6" pad="41"/>
 <wire x1="63.4499" y1="42.25" x2="62.5" y2="42.25" width="0.2032" layer="1"/>
@@ -7181,7 +7180,7 @@ Your Eurocircuits Team
 <wire x1="64" y1="54.5" x2="62.625" y2="54.5" width="0.2032" layer="16"/>
 <wire x1="62.5625" y1="54.4375" x2="62.625" y2="54.5" width="0.2032" layer="16"/>
 </signal>
-<signal name="OUT03">
+<signal name="OUT00">
 <contactref element="IC11" pad="2"/>
 <contactref element="IC6" pad="42"/>
 <wire x1="63.4499" y1="37.5" x2="64.53125" y2="37.5" width="0.2032" layer="1"/>
