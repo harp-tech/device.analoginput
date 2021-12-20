@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.5.1">
+<eagle version="9.6.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -16539,7 +16539,7 @@ Copyright 2021 Hardware Platform</text>
 <wire x1="256.54" y1="81.28" x2="264.16" y2="81.28" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="OUT03" class="0">
+<net name="OUT0" class="0">
 <segment>
 <wire x1="165.1" y1="200.66" x2="144.78" y2="200.66" width="0.1524" layer="91"/>
 <label x="144.78" y="200.66" size="1.778" layer="95"/>
@@ -16551,7 +16551,7 @@ Copyright 2021 Hardware Platform</text>
 <label x="35.56" y="83.82" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="OUT00" class="0">
+<net name="OUT3" class="0">
 <segment>
 <wire x1="165.1" y1="223.52" x2="144.78" y2="223.52" width="0.1524" layer="91"/>
 <label x="144.78" y="223.52" size="1.778" layer="95"/>
@@ -16563,7 +16563,7 @@ Copyright 2021 Hardware Platform</text>
 <label x="119.38" y="50.8" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="OUT02" class="0">
+<net name="OUT1" class="0">
 <segment>
 <wire x1="165.1" y1="228.6" x2="144.78" y2="228.6" width="0.1524" layer="91"/>
 <label x="144.78" y="228.6" size="1.778" layer="95"/>
@@ -16575,7 +16575,7 @@ Copyright 2021 Hardware Platform</text>
 <label x="35.56" y="50.8" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="OUT01" class="0">
+<net name="OUT2" class="0">
 <segment>
 <wire x1="165.1" y1="226.06" x2="144.78" y2="226.06" width="0.1524" layer="91"/>
 <label x="144.78" y="226.06" size="1.778" layer="95"/>
