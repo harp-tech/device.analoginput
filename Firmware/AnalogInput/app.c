@@ -86,8 +86,6 @@ void core_callback_reset_registers(void)
 	/* Initialize registers */
 	app_regs.REG_START = 0;
 	
-	app_regs.REG_THRESHOLDS = 0;
-	
 	app_regs.REG_RANGE_AND_INPUT_FILTER = GM_10V_1K5;
 	app_regs.REG_SAMPLE_FREQUENCY = GM_1KHZ;
 	
@@ -120,6 +118,17 @@ void core_callback_registers_were_reinitialized(void)
 {
 	/* Update registers if needed */
 	app_write_REG_DO_WRITE(&app_regs.REG_DO_WRITE);
+	
+	app_write_REG_RANGE_AND_INPUT_FILTER(&app_regs.REG_RANGE_AND_INPUT_FILTER);
+	
+//		app_regs.REG_DO0_CH = GM_ANA3;
+// 		app_regs.REG_DO1_CH = GM_ANA1;
+ 		app_regs.REG_DO2_CH = GM_ANA3;
+// 		app_regs.REG_DO3_CH = GM_ANA3;
+		app_regs.REG_DO0_TH_VALUE = 5000;
+		app_regs.REG_DO1_TH_VALUE = 5000;
+		app_regs.REG_DO2_TH_VALUE = 5000;
+		app_regs.REG_DO3_TH_VALUE = 5000;
 }
 
 /************************************************************************/
@@ -140,7 +149,10 @@ void core_callback_visualen_to_off(void)
 /************************************************************************/
 /* Callbacks: Change on the operation mode                              */
 /************************************************************************/
-void core_callback_device_to_standby(void) {}
+void core_callback_device_to_standby(void)
+{
+	app_regs.REG_START = 0;
+}
 void core_callback_device_to_active(void) {}
 void core_callback_device_to_enchanced_active(void) {}
 void core_callback_device_to_speed(void) {}
@@ -187,8 +199,15 @@ void core_callback_t_500us(void)
 		{
 			if (app_regs.REG_SAMPLE_FREQUENCY == GM_2KHZ)
 			{
-				core_func_mark_user_timestamp();		
+				core_func_mark_user_timestamp();
 				set_CONVST;
+				switch (app_regs.REG_TRIGGER_DESTINY)
+				{
+					case GM_TRIG_TO_DO0: set_DO0; break;
+					case GM_TRIG_TO_DO1: set_DO1; break;
+					case GM_TRIG_TO_DO2: set_DO2; break;
+					case GM_TRIG_TO_DO3: set_DO3; break;
+				}
 			}
 		}
 	}
@@ -215,6 +234,13 @@ void core_callback_t_1ms(void)
 		{
 			core_func_mark_user_timestamp();		
 			set_CONVST;
+			switch (app_regs.REG_TRIGGER_DESTINY)
+			{
+				case GM_TRIG_TO_DO0: set_DO0; break;
+				case GM_TRIG_TO_DO1: set_DO1; break;
+				case GM_TRIG_TO_DO2: set_DO2; break;
+				case GM_TRIG_TO_DO3: set_DO3; break;
+			}
 		}
 	}
 }

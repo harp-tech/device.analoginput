@@ -2,6 +2,7 @@
 #include "app_ios_and_regs.h"
 #include "hwbp_core.h"
 
+extern uint16_t pulse_counter_ms;
 
 /************************************************************************/
 /* Create pointers to functions                                         */
@@ -13,7 +14,7 @@ void (*app_func_rd_pointer[])(void) = {
 	&app_read_REG_ANALOG_INPUTS,
 	&app_read_REG_DI0,
 	&app_read_REG_RESERVED0,
-	&app_read_REG_THRESHOLDS,
+	&app_read_REG_RESERVED00,
 	&app_read_REG_RANGE_AND_INPUT_FILTER,
 	&app_read_REG_SAMPLE_FREQUENCY,
 	&app_read_REG_DI0_CONF,
@@ -75,7 +76,7 @@ bool (*app_func_wr_pointer[])(void*) = {
 	&app_write_REG_ANALOG_INPUTS,
 	&app_write_REG_DI0,
 	&app_write_REG_RESERVED0,
-	&app_write_REG_THRESHOLDS,
+	&app_write_REG_RESERVED00,
 	&app_write_REG_RANGE_AND_INPUT_FILTER,
 	&app_write_REG_SAMPLE_FREQUENCY,
 	&app_write_REG_DI0_CONF,
@@ -207,19 +208,19 @@ bool app_write_REG_RESERVED0(void *a)
 
 
 /************************************************************************/
-/* REG_THRESHOLDS                                                       */
+/* REG_RESERVED00                                                       */
 /************************************************************************/
-void app_read_REG_THRESHOLDS(void)
+void app_read_REG_RESERVED00(void)
 {
-	//app_regs.REG_THRESHOLDS = 0;
+	//app_regs.REG_RESERVED00 = 0;
 
 }
 
-bool app_write_REG_THRESHOLDS(void *a)
+bool app_write_REG_RESERVED00(void *a)
 {
 	uint8_t reg = *((uint8_t*)a);
 
-	app_regs.REG_THRESHOLDS = reg;
+	app_regs.REG_RESERVED00 = reg;
 	return true;
 }
 
@@ -227,15 +228,22 @@ bool app_write_REG_THRESHOLDS(void *a)
 /************************************************************************/
 /* REG_RANGE_AND_INPUT_FILTER                                           */
 /************************************************************************/
-void app_read_REG_RANGE_AND_INPUT_FILTER(void)
-{
-	//app_regs.REG_RANGE_AND_INPUT_FILTER = 0;
-
-}
-
+void app_read_REG_RANGE_AND_INPUT_FILTER(void) {}
 bool app_write_REG_RANGE_AND_INPUT_FILTER(void *a)
 {
 	uint8_t reg = *((uint8_t*)a);
+	
+	if (reg & ~MSK_RANGE_AND_INPUT_FILTER)
+		return false;
+	
+	PORTD.OUTCLR = 0x1C;
+	PORTD.OUTSET = (reg << 2) & 0x1C;
+	
+	
+	if (reg & 0x10)
+		set_RANGE;
+	else
+		clr_RANGE;
 
 	app_regs.REG_RANGE_AND_INPUT_FILTER = reg;
 	return true;
@@ -245,15 +253,13 @@ bool app_write_REG_RANGE_AND_INPUT_FILTER(void *a)
 /************************************************************************/
 /* REG_SAMPLE_FREQUENCY                                                 */
 /************************************************************************/
-void app_read_REG_SAMPLE_FREQUENCY(void)
-{
-	//app_regs.REG_SAMPLE_FREQUENCY = 0;
-
-}
-
+void app_read_REG_SAMPLE_FREQUENCY(void) {}
 bool app_write_REG_SAMPLE_FREQUENCY(void *a)
 {
 	uint8_t reg = *((uint8_t*)a);
+	
+	if (reg & ~MSK_SAMPLE_FREQUENCY)
+		return false;
 
 	app_regs.REG_SAMPLE_FREQUENCY = reg;
 	return true;
@@ -263,15 +269,13 @@ bool app_write_REG_SAMPLE_FREQUENCY(void *a)
 /************************************************************************/
 /* REG_DI0_CONF                                                         */
 /************************************************************************/
-void app_read_REG_DI0_CONF(void)
-{
-	//app_regs.REG_DI0_CONF = 0;
-
-}
-
+void app_read_REG_DI0_CONF(void) {}
 bool app_write_REG_DI0_CONF(void *a)
 {
 	uint8_t reg = *((uint8_t*)a);
+	
+	if (reg & (~MSK_DI0_SEL))
+		return false;
 
 	app_regs.REG_DI0_CONF = reg;
 	return true;
@@ -317,16 +321,16 @@ bool app_write_REG_DO0_PULSE(void *a)
 /************************************************************************/
 /* REG_DO_SET                                                           */
 /************************************************************************/
-void app_read_REG_DO_SET(void)
-{
-	//app_regs.REG_DO_SET = 0;
-
-}
-
+void app_read_REG_DO_SET(void) {}
 bool app_write_REG_DO_SET(void *a)
 {
-	uint16_t reg = *((uint16_t*)a);
+	uint8_t reg = *((uint8_t*)a);
+	
+	//PORTA_OUTSET = reg & 0x0F;
+	//if (reg & B_DO0)
+	//	pulse_counter_ms = app_regs.REG_DO0_PULSE + 1;
 
+	app_regs.REG_DO_WRITE = PORTA_OUT & 0x0F;
 	app_regs.REG_DO_SET = reg;
 	return true;
 }
@@ -335,16 +339,14 @@ bool app_write_REG_DO_SET(void *a)
 /************************************************************************/
 /* REG_DO_CLEAR                                                         */
 /************************************************************************/
-void app_read_REG_DO_CLEAR(void)
-{
-	//app_regs.REG_DO_CLEAR = 0;
-
-}
-
+void app_read_REG_DO_CLEAR(void) {}
 bool app_write_REG_DO_CLEAR(void *a)
 {
-	uint16_t reg = *((uint16_t*)a);
+	uint8_t reg = *((uint8_t*)a);
+	
+	//PORTA_OUTCLR = reg & 0x0F;
 
+	app_regs.REG_DO_WRITE = PORTA_OUT & 0x0F;
 	app_regs.REG_DO_CLEAR = reg;
 	return true;
 }
@@ -353,16 +355,18 @@ bool app_write_REG_DO_CLEAR(void *a)
 /************************************************************************/
 /* REG_DO_TOGGLE                                                        */
 /************************************************************************/
-void app_read_REG_DO_TOGGLE(void)
-{
-	//app_regs.REG_DO_TOGGLE = 0;
-
-}
-
+void app_read_REG_DO_TOGGLE(void) {}
 bool app_write_REG_DO_TOGGLE(void *a)
 {
-	uint16_t reg = *((uint16_t*)a);
-
+	uint8_t reg = *((uint8_t*)a);
+	
+	//if (!read_DO0)
+	//	if (reg & B_DO0)
+	//		pulse_counter_ms = app_regs.REG_DO0_PULSE + 1;
+		
+	//PORTA_OUTTGL = reg & 0x0F;
+	
+	app_regs.REG_DO_WRITE = PORTA_OUT & 0x0F;
 	app_regs.REG_DO_TOGGLE = reg;
 	return true;
 }
@@ -371,17 +375,17 @@ bool app_write_REG_DO_TOGGLE(void *a)
 /************************************************************************/
 /* REG_DO_WRITE                                                         */
 /************************************************************************/
-void app_read_REG_DO_WRITE(void)
-{
-	//app_regs.REG_DO_WRITE = 0;
-
-}
-
+void app_read_REG_DO_WRITE(void) {}
 bool app_write_REG_DO_WRITE(void *a)
 {
-	uint16_t reg = *((uint16_t*)a);
+	uint8_t reg = *((uint8_t*)a);
+	
+	//PORTA_OUT = (PORTA_OUT & (~0x0F)) | (reg & 0x0F);
+	
+	//if (reg & B_DO0)
+	//	pulse_counter_ms = app_regs.REG_DO0_PULSE + 1;
 
-	app_regs.REG_DO_WRITE = reg;
+	app_regs.REG_DO_WRITE = PORTA_OUT & 0x0F;
 	return true;
 }
 
@@ -425,15 +429,13 @@ bool app_write_REG_RESERVED2(void *a)
 /************************************************************************/
 /* REG_TRIGGER_DESTINY                                                  */
 /************************************************************************/
-void app_read_REG_TRIGGER_DESTINY(void)
-{
-	//app_regs.REG_TRIGGER_DESTINY = 0;
-
-}
-
+void app_read_REG_TRIGGER_DESTINY(void) {}
 bool app_write_REG_TRIGGER_DESTINY(void *a)
 {
-	int16_t reg = *((int16_t*)a);
+	uint8_t reg = *((uint8_t*)a);
+	
+	if (reg & (~MSK_TRIG_TO_DO0))
+		return false;
 
 	app_regs.REG_TRIGGER_DESTINY = reg;
 	return true;
