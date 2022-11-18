@@ -20,8 +20,9 @@ void init_ios(void)
 	io_pin2out(&PORTA, 0, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // DO2
 	io_pin2out(&PORTA, 1, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // DO1
 	io_pin2out(&PORTA, 2, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // DO0
-	io_pin2out(&PORTC, 0, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // CS_ADC
-	io_pin2out(&PORTC, 4, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // CONVST
+	io_pin2out(&PORTC, 0, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // CONVSTA
+	io_pin2out(&PORTC, 1, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // CONVSTB
+	io_pin2out(&PORTC, 4, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // CS_ADC
 	io_pin2out(&PORTC, 5, OUT_IO_DIGITAL, IN_EN_IO_DIS);                 // MOSI
 	io_pin2out(&PORTC, 7, OUT_IO_DIGITAL, IN_EN_IO_DIS);                 // SCK
 	io_pin2out(&PORTD, 0, OUT_IO_WIREDAND, IN_EN_IO_EN);                 // RESET
@@ -37,6 +38,7 @@ void init_ios(void)
 	clr_DO0;
 	set_CS_ADC;
 	clr_CONVST;
+	clr_CONVSTB;
 	clr_MOSI;
 	clr_SCK;
 	clr_RESET;

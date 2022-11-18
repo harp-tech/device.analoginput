@@ -201,6 +201,7 @@ void core_callback_t_500us(void)
 			{
 				core_func_mark_user_timestamp();
 				set_CONVST;
+				set_CONVSTB;
 				switch (app_regs.REG_TRIGGER_DESTINY)
 				{
 					case GM_TRIG_TO_DO0: set_DO0; break;
@@ -234,6 +235,7 @@ void core_callback_t_1ms(void)
 		{
 			core_func_mark_user_timestamp();		
 			set_CONVST;
+			set_CONVSTB;
 			switch (app_regs.REG_TRIGGER_DESTINY)
 			{
 				case GM_TRIG_TO_DO0: set_DO0; break;

@@ -55,6 +55,7 @@ ISR(PORTB_INT0_vect, ISR_NAKED)
 				
 				case GM_DI0_RISE_CATCH_SAMPLE:
 					set_CONVST;
+					set_CONVSTB;
 					switch (app_regs.REG_TRIGGER_DESTINY)
 					{
 						case GM_TRIG_TO_DO0: set_DO0; break;
@@ -89,6 +90,7 @@ ISR(PORTB_INT0_vect, ISR_NAKED)
 				
 				case GM_DI0_FALL_CATCH_SAMPLE:
 					set_CONVST;
+					set_CONVSTB;
 					switch (app_regs.REG_TRIGGER_DESTINY)
 					{
 						case GM_TRIG_TO_DO0: set_DO0; break;
@@ -114,6 +116,7 @@ ISR(PORTD_INT0_vect, ISR_NAKED)
 	if (!read_BUSY)
 	{
 		clr_CONVST;
+		clr_CONVSTB;
 		
 		switch (app_regs.REG_TRIGGER_DESTINY)
 		{

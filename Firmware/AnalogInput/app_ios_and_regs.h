@@ -56,16 +56,23 @@ void init_ios(void);
 #define read_DO0 read_io(PORTA, 2)
 
 /* CS_ADC */
-#define set_CS_ADC clear_io(PORTC, 0)
-#define clr_CS_ADC set_io(PORTC, 0)
-#define tgl_CS_ADC toggle_io(PORTC, 0)
-#define read_CS_ADC read_io(PORTC, 0)
+#define set_CS_ADC clear_io(PORTC, 4) 
+#define clr_CS_ADC set_io(PORTC, 4)
+#define tgl_CS_ADC toggle_io(PORTC, 4)
+#define read_CS_ADC read_io(PORTC, 4)
 
-/* CONVST */
-#define set_CONVST set_io(PORTC, 4)
-#define clr_CONVST clear_io(PORTC, 4)
-#define tgl_CONVST toggle_io(PORTC, 4)
-#define read_CONVST read_io(PORTC, 4)
+/* CONVSTA */
+#define set_CONVST set_io(PORTC, 0) 
+#define clr_CONVST clear_io(PORTC, 0)
+#define tgl_CONVST toggle_io(PORTC, 0)
+#define read_CONVST read_io(PORTC, 0)
+
+/* CONVSTB */
+#define set_CONVSTB set_io(PORTC, 1) 
+#define clr_CONVSTB clear_io(PORTC, 1)
+#define tgl_CONVSTB toggle_io(PORTC, 1)
+#define read_CONVSTB read_io(PORTC, 1)
+
 
 /* MOSI */
 #define set_MOSI set_io(PORTC, 5)
