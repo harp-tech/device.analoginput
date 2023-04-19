@@ -139,7 +139,7 @@ registers:
       address: 58
       access: Write
       type: U8
-      maskType: ThresholdOnChannel
+      maskType: ThresholdOn
       description: Target channel that will be used to trigger a threshold event on DO0 pin.
   DO1TargetChannel:
       <<: *targetchannel
@@ -320,7 +320,7 @@ groupMasks:
       DO1: 2
       DO2: 3
       DO3: 4
-  ThresholdOnChannel:
+  ThresholdOn:
     description: Available target analog channels to be targeted for threshold events.
     values:
       Channel0: 0
