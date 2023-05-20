@@ -17,10 +17,10 @@ void init_ios(void);
 /************************************************************************/
 /* Definition of output pins                                            */
 /************************************************************************/
-// DO3                    Description: Output DO0
-// DO2                    Description: Output DO1
-// DO1                    Description: Output DO2
-// DO0                    Description: Output DO3
+// DO0                    Description: Output DO0
+// DO1                    Description: Output DO1
+// DO2                    Description: Output DO2
+// DO3                    Description: Output DO3
 // CS_ADC                 Description: Chip select
 // CONVSTA                Description: Convert
 // CONVSTB                Description: Convert
@@ -32,17 +32,11 @@ void init_ios(void);
 // OS2                    Description: Oversampling bit 2
 // RANGE                  Description: Selects range 5 or 10V
 
-/* DO3 */
-#define set_DO3 set_io(PORTB, 1)
-#define clr_DO3 clear_io(PORTB, 1)
-#define tgl_DO3 toggle_io(PORTB, 1)
-#define read_DO3 read_io(PORTB, 1)
-
-/* DO2 */
-#define set_DO2 set_io(PORTA, 0)
-#define clr_DO2 clear_io(PORTA, 0)
-#define tgl_DO2 toggle_io(PORTA, 0)
-#define read_DO2 read_io(PORTA, 0)
+/* DO0 */
+#define set_DO0 set_io(PORTA, 0)
+#define clr_DO0 clear_io(PORTA, 0)
+#define tgl_DO0 toggle_io(PORTA, 0)
+#define read_DO0 read_io(PORTA, 0)
 
 /* DO1 */
 #define set_DO1 set_io(PORTA, 1)
@@ -50,11 +44,17 @@ void init_ios(void);
 #define tgl_DO1 toggle_io(PORTA, 1)
 #define read_DO1 read_io(PORTA, 1)
 
-/* DO0 */
-#define set_DO0 set_io(PORTA, 2)
-#define clr_DO0 clear_io(PORTA, 2)
-#define tgl_DO0 toggle_io(PORTA, 2)
-#define read_DO0 read_io(PORTA, 2)
+/* DO2 */
+#define set_DO2 set_io(PORTA, 2)
+#define clr_DO2 clear_io(PORTA, 2)
+#define tgl_DO2 toggle_io(PORTA, 2)
+#define read_DO2 read_io(PORTA, 2)
+
+/* DO3 */
+#define set_DO3 set_io(PORTA, 3)
+#define clr_DO3 clear_io(PORTA, 3)
+#define tgl_DO3 toggle_io(PORTA, 3)
+#define read_DO3 read_io(PORTA, 3)
 
 /* CS_ADC */
 #define set_CS_ADC clear_io(PORTC, 4)
