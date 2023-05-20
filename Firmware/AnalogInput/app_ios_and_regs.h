@@ -22,7 +22,8 @@ void init_ios(void);
 // DO1                    Description: Output DO2
 // DO0                    Description: Output DO3
 // CS_ADC                 Description: Chip select
-// CONVST                 Description: Convert
+// CONVSTA                Description: Convert
+// CONVSTB                Description: Convert
 // MOSI                   Description: Serial data input
 // SCK                    Description: Serial data clock
 // RESET                  Description: Reset
@@ -62,10 +63,10 @@ void init_ios(void);
 #define read_CS_ADC read_io(PORTC, 4)
 
 /* CONVSTA */
-#define set_CONVST set_io(PORTC, 0) 
-#define clr_CONVST clear_io(PORTC, 0)
-#define tgl_CONVST toggle_io(PORTC, 0)
-#define read_CONVST read_io(PORTC, 0)
+#define set_CONVSTA set_io(PORTC, 0)
+#define clr_CONVSTA clear_io(PORTC, 0)
+#define tgl_CONVSTA toggle_io(PORTC, 0)
+#define read_CONVSTA read_io(PORTC, 0)
 
 /* CONVSTB */
 #define set_CONVSTB set_io(PORTC, 1) 

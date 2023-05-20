@@ -200,7 +200,7 @@ void core_callback_t_500us(void)
 			if (app_regs.REG_SAMPLE_FREQUENCY == GM_2KHZ)
 			{
 				core_func_mark_user_timestamp();
-				set_CONVST;
+				set_CONVSTA;
 				set_CONVSTB;
 				switch (app_regs.REG_TRIGGER_DESTINY)
 				{
@@ -234,7 +234,7 @@ void core_callback_t_1ms(void)
 		if (app_regs.REG_START)
 		{
 			core_func_mark_user_timestamp();		
-			set_CONVST;
+			set_CONVSTA;
 			set_CONVSTB;
 			switch (app_regs.REG_TRIGGER_DESTINY)
 			{

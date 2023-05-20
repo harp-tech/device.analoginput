@@ -37,7 +37,7 @@ void init_ios(void)
 	clr_DO1;
 	clr_DO0;
 	set_CS_ADC;
-	clr_CONVST;
+	clr_CONVSTA;
 	clr_CONVSTB;
 	clr_MOSI;
 	clr_SCK;
