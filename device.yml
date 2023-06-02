@@ -6,7 +6,7 @@ whoAmI: 1236
 firmwareVersion: "1.0"
 hardwareTargets: "1.0"
 registers:
-  StartAcquisition:
+  AcquisitionState:
     address: 32
     access: Write
     type: U8
@@ -48,11 +48,11 @@ registers:
       type: U8
       maskType: RangeAndFilterConfig
       description: Sets the range and LowPass filter cutoff of the ADC.
-  SamplingFrequency:
+  SamplingRate:
       address: 38
       access: Write
       type: U8
-      maskType: SamplingFrequencyConfig
+      maskType: SamplingRateConfig
       description: Sets the sampling frequency of the ADC.
   DI0Trigger:
       address: 39
@@ -98,11 +98,11 @@ registers:
   Reserved3:
       <<: *ReservedReg
       address: 47
-  StartSyncOutput:
+  SyncOutput:
       address: 48
       access: Write
       type: U8
-      maskType: StartSyncOutputTargets
+      maskType: StartSyncOutputTarget
       description: Digital output that will be set when acquisition starts.
   Reserved4:
       <<: *ReservedReg
@@ -135,7 +135,7 @@ registers:
       address: 58
       access: Write
       type: U8
-      maskType: ThresholdOnAdc
+      maskType: ThresholdOnAdcChannel
       visibility: private
       description: Target ADC channel that will be used to trigger a threshold event on DO0 pin.
   DO1TargetChannel:
@@ -288,7 +288,7 @@ groupMasks:
       Range10V_LowPass11k9Hz: 0x13
       Range10V_LowPass18k5Hz: 0x12
       Range10V_LowPass22kHz: 0x11
-  SamplingFrequencyConfig:
+  SamplingRateConfig:
     description: Available sampling frequency settings of the ADC.
     values:
       Frequency1k: 0x00
@@ -307,7 +307,7 @@ groupMasks:
       Output: 0
       ToggleEachSecond: 1
       Pulse: 2
-  StartSyncOutputTargets:
+  StartSyncOutputTarget:
     description: Available digital output pins that are able to be triggered on acquisition start.
     values:
       None: 0
@@ -315,7 +315,7 @@ groupMasks:
       DO1: 2
       DO2: 3
       DO3: 4
-  ThresholdOnAdc:
+  ThresholdOnAdcChannel:
     description: Available target analog channels to be targeted for threshold events.
     values:
       Channel0: 0
