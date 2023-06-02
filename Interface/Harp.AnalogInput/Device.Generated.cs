@@ -37,11 +37,11 @@ namespace Harp.AnalogInput
         public static new IReadOnlyDictionary<int, Type> RegisterMap { get; } = new Dictionary<int, Type>
             (Bonsai.Harp.Device.RegisterMap.ToDictionary(entry => entry.Key, entry => entry.Value))
         {
-            { 32, typeof(StartAcquisition) },
+            { 32, typeof(AcquisitionState) },
             { 33, typeof(AnalogData) },
             { 34, typeof(DI0State) },
             { 37, typeof(RangeAndFilter) },
-            { 38, typeof(SamplingFrequency) },
+            { 38, typeof(SamplingRate) },
             { 39, typeof(DI0Trigger) },
             { 40, typeof(DO0Sync) },
             { 41, typeof(DO0PulseWidth) },
@@ -49,7 +49,7 @@ namespace Harp.AnalogInput
             { 43, typeof(DigitalOutputClear) },
             { 44, typeof(DigitalOutputToggle) },
             { 45, typeof(DigitalOutputState) },
-            { 48, typeof(StartSyncOutput) }
+            { 48, typeof(SyncOutput) }
         };
     }
 
@@ -78,11 +78,11 @@ namespace Harp.AnalogInput
     /// Represents an operator that filters register-specific messages
     /// reported by the <see cref="AnalogInput"/> device.
     /// </summary>
-    /// <seealso cref="StartAcquisition"/>
+    /// <seealso cref="AcquisitionState"/>
     /// <seealso cref="AnalogData"/>
     /// <seealso cref="DI0State"/>
     /// <seealso cref="RangeAndFilter"/>
-    /// <seealso cref="SamplingFrequency"/>
+    /// <seealso cref="SamplingRate"/>
     /// <seealso cref="DI0Trigger"/>
     /// <seealso cref="DO0Sync"/>
     /// <seealso cref="DO0PulseWidth"/>
@@ -90,12 +90,12 @@ namespace Harp.AnalogInput
     /// <seealso cref="DigitalOutputClear"/>
     /// <seealso cref="DigitalOutputToggle"/>
     /// <seealso cref="DigitalOutputState"/>
-    /// <seealso cref="StartSyncOutput"/>
-    [XmlInclude(typeof(StartAcquisition))]
+    /// <seealso cref="SyncOutput"/>
+    [XmlInclude(typeof(AcquisitionState))]
     [XmlInclude(typeof(AnalogData))]
     [XmlInclude(typeof(DI0State))]
     [XmlInclude(typeof(RangeAndFilter))]
-    [XmlInclude(typeof(SamplingFrequency))]
+    [XmlInclude(typeof(SamplingRate))]
     [XmlInclude(typeof(DI0Trigger))]
     [XmlInclude(typeof(DO0Sync))]
     [XmlInclude(typeof(DO0PulseWidth))]
@@ -103,7 +103,7 @@ namespace Harp.AnalogInput
     [XmlInclude(typeof(DigitalOutputClear))]
     [XmlInclude(typeof(DigitalOutputToggle))]
     [XmlInclude(typeof(DigitalOutputState))]
-    [XmlInclude(typeof(StartSyncOutput))]
+    [XmlInclude(typeof(SyncOutput))]
     [Description("Filters register-specific messages reported by the AnalogInput device.")]
     public class FilterMessage : FilterMessageBuilder, INamedElement
     {
@@ -112,7 +112,7 @@ namespace Harp.AnalogInput
         /// </summary>
         public FilterMessage()
         {
-            Register = new StartAcquisition();
+            Register = new AcquisitionState();
         }
 
         string INamedElement.Name
@@ -125,11 +125,11 @@ namespace Harp.AnalogInput
     /// Represents an operator which filters and selects specific messages
     /// reported by the AnalogInput device.
     /// </summary>
-    /// <seealso cref="StartAcquisition"/>
+    /// <seealso cref="AcquisitionState"/>
     /// <seealso cref="AnalogData"/>
     /// <seealso cref="DI0State"/>
     /// <seealso cref="RangeAndFilter"/>
-    /// <seealso cref="SamplingFrequency"/>
+    /// <seealso cref="SamplingRate"/>
     /// <seealso cref="DI0Trigger"/>
     /// <seealso cref="DO0Sync"/>
     /// <seealso cref="DO0PulseWidth"/>
@@ -137,12 +137,12 @@ namespace Harp.AnalogInput
     /// <seealso cref="DigitalOutputClear"/>
     /// <seealso cref="DigitalOutputToggle"/>
     /// <seealso cref="DigitalOutputState"/>
-    /// <seealso cref="StartSyncOutput"/>
-    [XmlInclude(typeof(StartAcquisition))]
+    /// <seealso cref="SyncOutput"/>
+    [XmlInclude(typeof(AcquisitionState))]
     [XmlInclude(typeof(AnalogData))]
     [XmlInclude(typeof(DI0State))]
     [XmlInclude(typeof(RangeAndFilter))]
-    [XmlInclude(typeof(SamplingFrequency))]
+    [XmlInclude(typeof(SamplingRate))]
     [XmlInclude(typeof(DI0Trigger))]
     [XmlInclude(typeof(DO0Sync))]
     [XmlInclude(typeof(DO0PulseWidth))]
@@ -150,12 +150,12 @@ namespace Harp.AnalogInput
     [XmlInclude(typeof(DigitalOutputClear))]
     [XmlInclude(typeof(DigitalOutputToggle))]
     [XmlInclude(typeof(DigitalOutputState))]
-    [XmlInclude(typeof(StartSyncOutput))]
-    [XmlInclude(typeof(TimestampedStartAcquisition))]
+    [XmlInclude(typeof(SyncOutput))]
+    [XmlInclude(typeof(TimestampedAcquisitionState))]
     [XmlInclude(typeof(TimestampedAnalogData))]
     [XmlInclude(typeof(TimestampedDI0State))]
     [XmlInclude(typeof(TimestampedRangeAndFilter))]
-    [XmlInclude(typeof(TimestampedSamplingFrequency))]
+    [XmlInclude(typeof(TimestampedSamplingRate))]
     [XmlInclude(typeof(TimestampedDI0Trigger))]
     [XmlInclude(typeof(TimestampedDO0Sync))]
     [XmlInclude(typeof(TimestampedDO0PulseWidth))]
@@ -163,7 +163,7 @@ namespace Harp.AnalogInput
     [XmlInclude(typeof(TimestampedDigitalOutputClear))]
     [XmlInclude(typeof(TimestampedDigitalOutputToggle))]
     [XmlInclude(typeof(TimestampedDigitalOutputState))]
-    [XmlInclude(typeof(TimestampedStartSyncOutput))]
+    [XmlInclude(typeof(TimestampedSyncOutput))]
     [Description("Filters and selects specific messages reported by the AnalogInput device.")]
     public partial class Parse : ParseBuilder, INamedElement
     {
@@ -172,7 +172,7 @@ namespace Harp.AnalogInput
         /// </summary>
         public Parse()
         {
-            Register = new StartAcquisition();
+            Register = new AcquisitionState();
         }
 
         string INamedElement.Name => $"{nameof(AnalogInput)}.{GetElementDisplayName(Register)}";
@@ -182,11 +182,11 @@ namespace Harp.AnalogInput
     /// Represents an operator which formats a sequence of values as specific
     /// AnalogInput register messages.
     /// </summary>
-    /// <seealso cref="StartAcquisition"/>
+    /// <seealso cref="AcquisitionState"/>
     /// <seealso cref="AnalogData"/>
     /// <seealso cref="DI0State"/>
     /// <seealso cref="RangeAndFilter"/>
-    /// <seealso cref="SamplingFrequency"/>
+    /// <seealso cref="SamplingRate"/>
     /// <seealso cref="DI0Trigger"/>
     /// <seealso cref="DO0Sync"/>
     /// <seealso cref="DO0PulseWidth"/>
@@ -194,12 +194,12 @@ namespace Harp.AnalogInput
     /// <seealso cref="DigitalOutputClear"/>
     /// <seealso cref="DigitalOutputToggle"/>
     /// <seealso cref="DigitalOutputState"/>
-    /// <seealso cref="StartSyncOutput"/>
-    [XmlInclude(typeof(StartAcquisition))]
+    /// <seealso cref="SyncOutput"/>
+    [XmlInclude(typeof(AcquisitionState))]
     [XmlInclude(typeof(AnalogData))]
     [XmlInclude(typeof(DI0State))]
     [XmlInclude(typeof(RangeAndFilter))]
-    [XmlInclude(typeof(SamplingFrequency))]
+    [XmlInclude(typeof(SamplingRate))]
     [XmlInclude(typeof(DI0Trigger))]
     [XmlInclude(typeof(DO0Sync))]
     [XmlInclude(typeof(DO0PulseWidth))]
@@ -207,7 +207,7 @@ namespace Harp.AnalogInput
     [XmlInclude(typeof(DigitalOutputClear))]
     [XmlInclude(typeof(DigitalOutputToggle))]
     [XmlInclude(typeof(DigitalOutputState))]
-    [XmlInclude(typeof(StartSyncOutput))]
+    [XmlInclude(typeof(SyncOutput))]
     [Description("Formats a sequence of values as specific AnalogInput register messages.")]
     public partial class Format : FormatBuilder, INamedElement
     {
@@ -216,7 +216,7 @@ namespace Harp.AnalogInput
         /// </summary>
         public Format()
         {
-            Register = new StartAcquisition();
+            Register = new AcquisitionState();
         }
 
         string INamedElement.Name => $"{nameof(AnalogInput)}.{GetElementDisplayName(Register)}";
@@ -226,25 +226,25 @@ namespace Harp.AnalogInput
     /// Represents a register that enables the data acquisition.
     /// </summary>
     [Description("Enables the data acquisition.")]
-    public partial class StartAcquisition
+    public partial class AcquisitionState
     {
         /// <summary>
-        /// Represents the address of the <see cref="StartAcquisition"/> register. This field is constant.
+        /// Represents the address of the <see cref="AcquisitionState"/> register. This field is constant.
         /// </summary>
         public const int Address = 32;
 
         /// <summary>
-        /// Represents the payload type of the <see cref="StartAcquisition"/> register. This field is constant.
+        /// Represents the payload type of the <see cref="AcquisitionState"/> register. This field is constant.
         /// </summary>
         public const PayloadType RegisterType = PayloadType.U8;
 
         /// <summary>
-        /// Represents the length of the <see cref="StartAcquisition"/> register. This field is constant.
+        /// Represents the length of the <see cref="AcquisitionState"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 1;
 
         /// <summary>
-        /// Returns the payload data for <see cref="StartAcquisition"/> register messages.
+        /// Returns the payload data for <see cref="AcquisitionState"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
@@ -254,7 +254,7 @@ namespace Harp.AnalogInput
         }
 
         /// <summary>
-        /// Returns the timestamped payload data for <see cref="StartAcquisition"/> register messages.
+        /// Returns the timestamped payload data for <see cref="AcquisitionState"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
@@ -265,12 +265,12 @@ namespace Harp.AnalogInput
         }
 
         /// <summary>
-        /// Returns a Harp message for the <see cref="StartAcquisition"/> register.
+        /// Returns a Harp message for the <see cref="AcquisitionState"/> register.
         /// </summary>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="StartAcquisition"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="AcquisitionState"/> register
         /// with the specified message type and payload.
         /// </returns>
         public static HarpMessage FromPayload(MessageType messageType, EnableFlag value)
@@ -279,14 +279,14 @@ namespace Harp.AnalogInput
         }
 
         /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="StartAcquisition"/>
+        /// Returns a timestamped Harp message for the <see cref="AcquisitionState"/>
         /// register.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="StartAcquisition"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="AcquisitionState"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
         public static HarpMessage FromPayload(double timestamp, MessageType messageType, EnableFlag value)
@@ -297,25 +297,25 @@ namespace Harp.AnalogInput
 
     /// <summary>
     /// Provides methods for manipulating timestamped messages from the
-    /// StartAcquisition register.
+    /// AcquisitionState register.
     /// </summary>
-    /// <seealso cref="StartAcquisition"/>
-    [Description("Filters and selects timestamped messages from the StartAcquisition register.")]
-    public partial class TimestampedStartAcquisition
+    /// <seealso cref="AcquisitionState"/>
+    [Description("Filters and selects timestamped messages from the AcquisitionState register.")]
+    public partial class TimestampedAcquisitionState
     {
         /// <summary>
-        /// Represents the address of the <see cref="StartAcquisition"/> register. This field is constant.
+        /// Represents the address of the <see cref="AcquisitionState"/> register. This field is constant.
         /// </summary>
-        public const int Address = StartAcquisition.Address;
+        public const int Address = AcquisitionState.Address;
 
         /// <summary>
-        /// Returns timestamped payload data for <see cref="StartAcquisition"/> register messages.
+        /// Returns timestamped payload data for <see cref="AcquisitionState"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
         public static Timestamped<EnableFlag> GetPayload(HarpMessage message)
         {
-            return StartAcquisition.GetTimestampedPayload(message);
+            return AcquisitionState.GetTimestampedPayload(message);
         }
     }
 
@@ -635,70 +635,70 @@ namespace Harp.AnalogInput
     /// Represents a register that sets the sampling frequency of the ADC.
     /// </summary>
     [Description("Sets the sampling frequency of the ADC.")]
-    public partial class SamplingFrequency
+    public partial class SamplingRate
     {
         /// <summary>
-        /// Represents the address of the <see cref="SamplingFrequency"/> register. This field is constant.
+        /// Represents the address of the <see cref="SamplingRate"/> register. This field is constant.
         /// </summary>
         public const int Address = 38;
 
         /// <summary>
-        /// Represents the payload type of the <see cref="SamplingFrequency"/> register. This field is constant.
+        /// Represents the payload type of the <see cref="SamplingRate"/> register. This field is constant.
         /// </summary>
         public const PayloadType RegisterType = PayloadType.U8;
 
         /// <summary>
-        /// Represents the length of the <see cref="SamplingFrequency"/> register. This field is constant.
+        /// Represents the length of the <see cref="SamplingRate"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 1;
 
         /// <summary>
-        /// Returns the payload data for <see cref="SamplingFrequency"/> register messages.
+        /// Returns the payload data for <see cref="SamplingRate"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
-        public static SamplingFrequencyConfig GetPayload(HarpMessage message)
+        public static SamplingRateConfig GetPayload(HarpMessage message)
         {
-            return (SamplingFrequencyConfig)message.GetPayloadByte();
+            return (SamplingRateConfig)message.GetPayloadByte();
         }
 
         /// <summary>
-        /// Returns the timestamped payload data for <see cref="SamplingFrequency"/> register messages.
+        /// Returns the timestamped payload data for <see cref="SamplingRate"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<SamplingFrequencyConfig> GetTimestampedPayload(HarpMessage message)
+        public static Timestamped<SamplingRateConfig> GetTimestampedPayload(HarpMessage message)
         {
             var payload = message.GetTimestampedPayloadByte();
-            return Timestamped.Create((SamplingFrequencyConfig)payload.Value, payload.Seconds);
+            return Timestamped.Create((SamplingRateConfig)payload.Value, payload.Seconds);
         }
 
         /// <summary>
-        /// Returns a Harp message for the <see cref="SamplingFrequency"/> register.
+        /// Returns a Harp message for the <see cref="SamplingRate"/> register.
         /// </summary>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="SamplingFrequency"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="SamplingRate"/> register
         /// with the specified message type and payload.
         /// </returns>
-        public static HarpMessage FromPayload(MessageType messageType, SamplingFrequencyConfig value)
+        public static HarpMessage FromPayload(MessageType messageType, SamplingRateConfig value)
         {
             return HarpMessage.FromByte(Address, messageType, (byte)value);
         }
 
         /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="SamplingFrequency"/>
+        /// Returns a timestamped Harp message for the <see cref="SamplingRate"/>
         /// register.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="SamplingFrequency"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="SamplingRate"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
-        public static HarpMessage FromPayload(double timestamp, MessageType messageType, SamplingFrequencyConfig value)
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, SamplingRateConfig value)
         {
             return HarpMessage.FromByte(Address, timestamp, messageType, (byte)value);
         }
@@ -706,25 +706,25 @@ namespace Harp.AnalogInput
 
     /// <summary>
     /// Provides methods for manipulating timestamped messages from the
-    /// SamplingFrequency register.
+    /// SamplingRate register.
     /// </summary>
-    /// <seealso cref="SamplingFrequency"/>
-    [Description("Filters and selects timestamped messages from the SamplingFrequency register.")]
-    public partial class TimestampedSamplingFrequency
+    /// <seealso cref="SamplingRate"/>
+    [Description("Filters and selects timestamped messages from the SamplingRate register.")]
+    public partial class TimestampedSamplingRate
     {
         /// <summary>
-        /// Represents the address of the <see cref="SamplingFrequency"/> register. This field is constant.
+        /// Represents the address of the <see cref="SamplingRate"/> register. This field is constant.
         /// </summary>
-        public const int Address = SamplingFrequency.Address;
+        public const int Address = SamplingRate.Address;
 
         /// <summary>
-        /// Returns timestamped payload data for <see cref="SamplingFrequency"/> register messages.
+        /// Returns timestamped payload data for <see cref="SamplingRate"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<SamplingFrequencyConfig> GetPayload(HarpMessage message)
+        public static Timestamped<SamplingRateConfig> GetPayload(HarpMessage message)
         {
-            return SamplingFrequency.GetTimestampedPayload(message);
+            return SamplingRate.GetTimestampedPayload(message);
         }
     }
 
@@ -1410,70 +1410,70 @@ namespace Harp.AnalogInput
     /// Represents a register that digital output that will be set when acquisition starts.
     /// </summary>
     [Description("Digital output that will be set when acquisition starts.")]
-    public partial class StartSyncOutput
+    public partial class SyncOutput
     {
         /// <summary>
-        /// Represents the address of the <see cref="StartSyncOutput"/> register. This field is constant.
+        /// Represents the address of the <see cref="SyncOutput"/> register. This field is constant.
         /// </summary>
         public const int Address = 48;
 
         /// <summary>
-        /// Represents the payload type of the <see cref="StartSyncOutput"/> register. This field is constant.
+        /// Represents the payload type of the <see cref="SyncOutput"/> register. This field is constant.
         /// </summary>
         public const PayloadType RegisterType = PayloadType.U8;
 
         /// <summary>
-        /// Represents the length of the <see cref="StartSyncOutput"/> register. This field is constant.
+        /// Represents the length of the <see cref="SyncOutput"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 1;
 
         /// <summary>
-        /// Returns the payload data for <see cref="StartSyncOutput"/> register messages.
+        /// Returns the payload data for <see cref="SyncOutput"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
-        public static StartSyncOutputTargets GetPayload(HarpMessage message)
+        public static StartSyncOutputTarget GetPayload(HarpMessage message)
         {
-            return (StartSyncOutputTargets)message.GetPayloadByte();
+            return (StartSyncOutputTarget)message.GetPayloadByte();
         }
 
         /// <summary>
-        /// Returns the timestamped payload data for <see cref="StartSyncOutput"/> register messages.
+        /// Returns the timestamped payload data for <see cref="SyncOutput"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<StartSyncOutputTargets> GetTimestampedPayload(HarpMessage message)
+        public static Timestamped<StartSyncOutputTarget> GetTimestampedPayload(HarpMessage message)
         {
             var payload = message.GetTimestampedPayloadByte();
-            return Timestamped.Create((StartSyncOutputTargets)payload.Value, payload.Seconds);
+            return Timestamped.Create((StartSyncOutputTarget)payload.Value, payload.Seconds);
         }
 
         /// <summary>
-        /// Returns a Harp message for the <see cref="StartSyncOutput"/> register.
+        /// Returns a Harp message for the <see cref="SyncOutput"/> register.
         /// </summary>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="StartSyncOutput"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="SyncOutput"/> register
         /// with the specified message type and payload.
         /// </returns>
-        public static HarpMessage FromPayload(MessageType messageType, StartSyncOutputTargets value)
+        public static HarpMessage FromPayload(MessageType messageType, StartSyncOutputTarget value)
         {
             return HarpMessage.FromByte(Address, messageType, (byte)value);
         }
 
         /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="StartSyncOutput"/>
+        /// Returns a timestamped Harp message for the <see cref="SyncOutput"/>
         /// register.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="StartSyncOutput"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="SyncOutput"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
-        public static HarpMessage FromPayload(double timestamp, MessageType messageType, StartSyncOutputTargets value)
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, StartSyncOutputTarget value)
         {
             return HarpMessage.FromByte(Address, timestamp, messageType, (byte)value);
         }
@@ -1481,25 +1481,25 @@ namespace Harp.AnalogInput
 
     /// <summary>
     /// Provides methods for manipulating timestamped messages from the
-    /// StartSyncOutput register.
+    /// SyncOutput register.
     /// </summary>
-    /// <seealso cref="StartSyncOutput"/>
-    [Description("Filters and selects timestamped messages from the StartSyncOutput register.")]
-    public partial class TimestampedStartSyncOutput
+    /// <seealso cref="SyncOutput"/>
+    [Description("Filters and selects timestamped messages from the SyncOutput register.")]
+    public partial class TimestampedSyncOutput
     {
         /// <summary>
-        /// Represents the address of the <see cref="StartSyncOutput"/> register. This field is constant.
+        /// Represents the address of the <see cref="SyncOutput"/> register. This field is constant.
         /// </summary>
-        public const int Address = StartSyncOutput.Address;
+        public const int Address = SyncOutput.Address;
 
         /// <summary>
-        /// Returns timestamped payload data for <see cref="StartSyncOutput"/> register messages.
+        /// Returns timestamped payload data for <see cref="SyncOutput"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<StartSyncOutputTargets> GetPayload(HarpMessage message)
+        public static Timestamped<StartSyncOutputTarget> GetPayload(HarpMessage message)
         {
-            return StartSyncOutput.GetTimestampedPayload(message);
+            return SyncOutput.GetTimestampedPayload(message);
         }
     }
 
@@ -1507,11 +1507,11 @@ namespace Harp.AnalogInput
     /// Represents an operator which creates standard message payloads for the
     /// AnalogInput device.
     /// </summary>
-    /// <seealso cref="CreateStartAcquisitionPayload"/>
+    /// <seealso cref="CreateAcquisitionStatePayload"/>
     /// <seealso cref="CreateAnalogDataPayload"/>
     /// <seealso cref="CreateDI0StatePayload"/>
     /// <seealso cref="CreateRangeAndFilterPayload"/>
-    /// <seealso cref="CreateSamplingFrequencyPayload"/>
+    /// <seealso cref="CreateSamplingRatePayload"/>
     /// <seealso cref="CreateDI0TriggerPayload"/>
     /// <seealso cref="CreateDO0SyncPayload"/>
     /// <seealso cref="CreateDO0PulseWidthPayload"/>
@@ -1519,12 +1519,12 @@ namespace Harp.AnalogInput
     /// <seealso cref="CreateDigitalOutputClearPayload"/>
     /// <seealso cref="CreateDigitalOutputTogglePayload"/>
     /// <seealso cref="CreateDigitalOutputStatePayload"/>
-    /// <seealso cref="CreateStartSyncOutputPayload"/>
-    [XmlInclude(typeof(CreateStartAcquisitionPayload))]
+    /// <seealso cref="CreateSyncOutputPayload"/>
+    [XmlInclude(typeof(CreateAcquisitionStatePayload))]
     [XmlInclude(typeof(CreateAnalogDataPayload))]
     [XmlInclude(typeof(CreateDI0StatePayload))]
     [XmlInclude(typeof(CreateRangeAndFilterPayload))]
-    [XmlInclude(typeof(CreateSamplingFrequencyPayload))]
+    [XmlInclude(typeof(CreateSamplingRatePayload))]
     [XmlInclude(typeof(CreateDI0TriggerPayload))]
     [XmlInclude(typeof(CreateDO0SyncPayload))]
     [XmlInclude(typeof(CreateDO0PulseWidthPayload))]
@@ -1532,7 +1532,7 @@ namespace Harp.AnalogInput
     [XmlInclude(typeof(CreateDigitalOutputClearPayload))]
     [XmlInclude(typeof(CreateDigitalOutputTogglePayload))]
     [XmlInclude(typeof(CreateDigitalOutputStatePayload))]
-    [XmlInclude(typeof(CreateStartSyncOutputPayload))]
+    [XmlInclude(typeof(CreateSyncOutputPayload))]
     [Description("Creates standard message payloads for the AnalogInput device.")]
     public partial class CreateMessage : CreateMessageBuilder, INamedElement
     {
@@ -1541,7 +1541,7 @@ namespace Harp.AnalogInput
         /// </summary>
         public CreateMessage()
         {
-            Payload = new CreateStartAcquisitionPayload();
+            Payload = new CreateAcquisitionStatePayload();
         }
 
         string INamedElement.Name => $"{nameof(AnalogInput)}.{GetElementDisplayName(Payload)}";
@@ -1551,10 +1551,10 @@ namespace Harp.AnalogInput
     /// Represents an operator that creates a sequence of message payloads
     /// that enables the data acquisition.
     /// </summary>
-    [DisplayName("StartAcquisitionPayload")]
+    [DisplayName("AcquisitionStatePayload")]
     [WorkflowElementCategory(ElementCategory.Transform)]
     [Description("Creates a sequence of message payloads that enables the data acquisition.")]
-    public partial class CreateStartAcquisitionPayload : HarpCombinator
+    public partial class CreateAcquisitionStatePayload : HarpCombinator
     {
         /// <summary>
         /// Gets or sets the value that enables the data acquisition.
@@ -1591,7 +1591,7 @@ namespace Harp.AnalogInput
         /// </returns>
         public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
         {
-            return source.Select(_ => StartAcquisition.FromPayload(MessageType, Value));
+            return source.Select(_ => AcquisitionState.FromPayload(MessageType, Value));
         }
     }
 
@@ -1769,16 +1769,16 @@ namespace Harp.AnalogInput
     /// Represents an operator that creates a sequence of message payloads
     /// that sets the sampling frequency of the ADC.
     /// </summary>
-    [DisplayName("SamplingFrequencyPayload")]
+    [DisplayName("SamplingRatePayload")]
     [WorkflowElementCategory(ElementCategory.Transform)]
     [Description("Creates a sequence of message payloads that sets the sampling frequency of the ADC.")]
-    public partial class CreateSamplingFrequencyPayload : HarpCombinator
+    public partial class CreateSamplingRatePayload : HarpCombinator
     {
         /// <summary>
         /// Gets or sets the value that sets the sampling frequency of the ADC.
         /// </summary>
         [Description("The value that sets the sampling frequency of the ADC.")]
-        public SamplingFrequencyConfig Value { get; set; }
+        public SamplingRateConfig Value { get; set; }
 
         /// <summary>
         /// Creates an observable sequence that contains a single message
@@ -1809,7 +1809,7 @@ namespace Harp.AnalogInput
         /// </returns>
         public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
         {
-            return source.Select(_ => SamplingFrequency.FromPayload(MessageType, Value));
+            return source.Select(_ => SamplingRate.FromPayload(MessageType, Value));
         }
     }
 
@@ -2155,16 +2155,16 @@ namespace Harp.AnalogInput
     /// Represents an operator that creates a sequence of message payloads
     /// that digital output that will be set when acquisition starts.
     /// </summary>
-    [DisplayName("StartSyncOutputPayload")]
+    [DisplayName("SyncOutputPayload")]
     [WorkflowElementCategory(ElementCategory.Transform)]
     [Description("Creates a sequence of message payloads that digital output that will be set when acquisition starts.")]
-    public partial class CreateStartSyncOutputPayload : HarpCombinator
+    public partial class CreateSyncOutputPayload : HarpCombinator
     {
         /// <summary>
         /// Gets or sets the value that digital output that will be set when acquisition starts.
         /// </summary>
         [Description("The value that digital output that will be set when acquisition starts.")]
-        public StartSyncOutputTargets Value { get; set; }
+        public StartSyncOutputTarget Value { get; set; }
 
         /// <summary>
         /// Creates an observable sequence that contains a single message
@@ -2195,7 +2195,7 @@ namespace Harp.AnalogInput
         /// </returns>
         public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
         {
-            return source.Select(_ => StartSyncOutput.FromPayload(MessageType, Value));
+            return source.Select(_ => SyncOutput.FromPayload(MessageType, Value));
         }
     }
 
@@ -2292,7 +2292,7 @@ namespace Harp.AnalogInput
     /// <summary>
     /// Available sampling frequency settings of the ADC.
     /// </summary>
-    public enum SamplingFrequencyConfig : byte
+    public enum SamplingRateConfig : byte
     {
         Frequency1k = 0,
         Frequency2k = 1
@@ -2323,7 +2323,7 @@ namespace Harp.AnalogInput
     /// <summary>
     /// Available digital output pins that are able to be triggered on acquisition start.
     /// </summary>
-    public enum StartSyncOutputTargets : byte
+    public enum StartSyncOutputTarget : byte
     {
         None = 0,
         DO0 = 1,
@@ -2335,7 +2335,7 @@ namespace Harp.AnalogInput
     /// <summary>
     /// Available target analog channels to be targeted for threshold events.
     /// </summary>
-    public enum ThresholdOnAdc : byte
+    public enum ThresholdOnAdcChannel : byte
     {
         Channel0 = 0,
         Channel1 = 1,

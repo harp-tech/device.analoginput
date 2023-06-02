@@ -45,39 +45,39 @@ namespace Harp.AnalogInput
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the StartAcquisition register.
+        /// Asynchronously reads the contents of the AcquisitionState register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<EnableFlag> ReadStartAcquisitionAsync()
+        public async Task<EnableFlag> ReadAcquisitionStateAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(StartAcquisition.Address));
-            return StartAcquisition.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(AcquisitionState.Address));
+            return AcquisitionState.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the StartAcquisition register.
+        /// Asynchronously reads the timestamped contents of the AcquisitionState register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<EnableFlag>> ReadTimestampedStartAcquisitionAsync()
+        public async Task<Timestamped<EnableFlag>> ReadTimestampedAcquisitionStateAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(StartAcquisition.Address));
-            return StartAcquisition.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(AcquisitionState.Address));
+            return AcquisitionState.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the StartAcquisition register.
+        /// Asynchronously writes a value to the AcquisitionState register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteStartAcquisitionAsync(EnableFlag value)
+        public async Task WriteAcquisitionStateAsync(EnableFlag value)
         {
-            var request = StartAcquisition.FromPayload(MessageType.Write, value);
+            var request = AcquisitionState.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
@@ -171,39 +171,39 @@ namespace Harp.AnalogInput
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the SamplingFrequency register.
+        /// Asynchronously reads the contents of the SamplingRate register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<SamplingFrequencyConfig> ReadSamplingFrequencyAsync()
+        public async Task<SamplingRateConfig> ReadSamplingRateAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(SamplingFrequency.Address));
-            return SamplingFrequency.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(SamplingRate.Address));
+            return SamplingRate.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the SamplingFrequency register.
+        /// Asynchronously reads the timestamped contents of the SamplingRate register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<SamplingFrequencyConfig>> ReadTimestampedSamplingFrequencyAsync()
+        public async Task<Timestamped<SamplingRateConfig>> ReadTimestampedSamplingRateAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(SamplingFrequency.Address));
-            return SamplingFrequency.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(SamplingRate.Address));
+            return SamplingRate.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the SamplingFrequency register.
+        /// Asynchronously writes a value to the SamplingRate register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteSamplingFrequencyAsync(SamplingFrequencyConfig value)
+        public async Task WriteSamplingRateAsync(SamplingRateConfig value)
         {
-            var request = SamplingFrequency.FromPayload(MessageType.Write, value);
+            var request = SamplingRate.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
@@ -467,39 +467,39 @@ namespace Harp.AnalogInput
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the StartSyncOutput register.
+        /// Asynchronously reads the contents of the SyncOutput register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<StartSyncOutputTargets> ReadStartSyncOutputAsync()
+        public async Task<StartSyncOutputTarget> ReadSyncOutputAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(StartSyncOutput.Address));
-            return StartSyncOutput.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(SyncOutput.Address));
+            return SyncOutput.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the StartSyncOutput register.
+        /// Asynchronously reads the timestamped contents of the SyncOutput register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<StartSyncOutputTargets>> ReadTimestampedStartSyncOutputAsync()
+        public async Task<Timestamped<StartSyncOutputTarget>> ReadTimestampedSyncOutputAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(StartSyncOutput.Address));
-            return StartSyncOutput.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(SyncOutput.Address));
+            return SyncOutput.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the StartSyncOutput register.
+        /// Asynchronously writes a value to the SyncOutput register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteStartSyncOutputAsync(StartSyncOutputTargets value)
+        public async Task WriteSyncOutputAsync(StartSyncOutputTarget value)
         {
-            var request = StartSyncOutput.FromPayload(MessageType.Write, value);
+            var request = SyncOutput.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
     }
