@@ -27,11 +27,11 @@ registers:
         offset: 2
       Channel3:
         offset: 3
-  DI0State:
+  DigitalInputState:
       address: 34
       access: Event
       type: U8
-      maskType: DigitalState
+      maskType: DigitalInputs
       description: State of the digital input pin 0.
   Reserved0: &ReservedReg
       address: 35
@@ -52,19 +52,19 @@ registers:
       address: 38
       access: Write
       type: U8
-      maskType: SamplingRateConfig
+      maskType: SamplingRateMode
       description: Sets the sampling frequency of the ADC.
   DI0Trigger:
       address: 39
       access: Write
       type: U8
-      maskType: DI0TriggerConfig
+      maskType: TriggerConfig
       description: Configuration of the digital input pin 0.
   DO0Sync:
       address: 40
       access: Write
       type: U8
-      maskType: DO0SyncConfig
+      maskType: SyncConfig
       description: Configuration of the digital output pin 0.
   DO0PulseWidth:
       address: 41
@@ -135,7 +135,7 @@ registers:
       address: 58
       access: Write
       type: U8
-      maskType: ThresholdOnAdcChannel
+      maskType: AdcChannel
       visibility: private
       description: Target ADC channel that will be used to trigger a threshold event on DO0 pin.
   DO1TargetChannel:
@@ -192,22 +192,22 @@ registers:
   Reserved20:
       <<: *ReservedReg
       address: 73
-  DO0BufferRisingEdge: &bufferedthreshold
+  DO0TimeAboveThreshold: &bufferedthreshold
       address: 74
       access: Write
       type: U16
       visibility: private
       defaultValue: 0
       description: Time (ms) above threshold value that is required to trigger a DO0 pin event.
-  DO1BufferRisingEdge:
+  DO1TimeAboveThreshold:
       <<: *bufferedthreshold
       address: 75
       description: Time (ms) above threshold value that is required to trigger a DO1 pin event.
-  DO2BufferRisingEdge:
+  DO2TimeAboveThreshold:
       <<: *bufferedthreshold
       address: 76
       description: Time (ms) above threshold value that is required to trigger a DO2 pin event.
-  DO3BufferRisingEdge:
+  DO3TimeAboveThreshold:
       <<: *bufferedthreshold
       address: 77
       description: Time (ms) above threshold value that is required to trigger a DO3 pin event.
@@ -223,20 +223,20 @@ registers:
   Reserved24:
       <<: *ReservedReg
       address: 81
-  DO0BufferFallingEdge:
+  DO0TimeBelowThreshold:
       <<: *bufferedthreshold
       address: 82
       visibility: private
       description: Time (ms) below threshold value that is required to trigger a DO0 pin event.
-  DO1BufferFallingEdge:
+  DO1TimeBelowThreshold:
       <<: *bufferedthreshold
       address: 83
       description: Time (ms) below threshold value that is required to trigger a DO1 pin event.
-  DO2BufferFallingEdge:
+  DO2TimeBelowThreshold:
       <<: *bufferedthreshold
       address: 84
       description: Time (ms) below threshold value that is required to trigger a DO2 pin event.
-  DO3BufferFallingEdge:
+  DO3TimeBelowThreshold:
       <<: *bufferedthreshold
       address: 85
       description: Time (ms) below threshold value that is required to trigger a DO3 pin event.
@@ -256,6 +256,10 @@ registers:
       <<: *ReservedReg
       address: 90
 bitMasks:
+  DigitalInputs:
+    description: Available digital input lines.
+    bits:
+      DI0: 0x1
   DigitalOutputs:
     description: Specifies the state of port digital output lines.
     bits:
@@ -268,11 +272,6 @@ bitMasks:
       DO2Changed: 0x40
       DO4Changed: 0x80
 groupMasks:
-  DigitalState:
-    description: The state of a digital pin.
-    values:
-      Low: 0
-      High: 1
   RangeAndFilterConfig:
     description: Available settings to set the range (Volt) and LowPass filter cutoff (Hz) of the ADC.
     values:
@@ -288,12 +287,12 @@ groupMasks:
       Range10V_LowPass11k9Hz: 0x13
       Range10V_LowPass18k5Hz: 0x12
       Range10V_LowPass22kHz: 0x11
-  SamplingRateConfig:
+  SamplingRateMode:
     description: Available sampling frequency settings of the ADC.
     values:
-      Frequency1k: 0x00
-      Frequency2k: 0x01
-  DI0TriggerConfig:
+      SamplingRate1000Hz: 0x00
+      SamplingRate2000Hz: 0x01
+  TriggerConfig:
     description: Available configurations for when using DI0 as an acquisition trigger.
     values:
       None: 0
@@ -301,11 +300,11 @@ groupMasks:
       StartOnFallingEdge: 2
       SampleOnRisingEdge: 3
       SampleOnFallingEdge: 4
-  DO0SyncConfig:
+  SyncConfig:
     description: Available configurations when using DO0 pin to report firmware events.
     values:
-      Output: 0
-      ToggleEachSecond: 1
+      None: 0
+      Heartbeat: 1
       Pulse: 2
   StartSyncOutputTarget:
     description: Available digital output pins that are able to be triggered on acquisition start.
@@ -315,7 +314,7 @@ groupMasks:
       DO1: 2
       DO2: 3
       DO3: 4
-  ThresholdOnAdcChannel:
+  AdcChannel:
     description: Available target analog channels to be targeted for threshold events.
     values:
       Channel0: 0
