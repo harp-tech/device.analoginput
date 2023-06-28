@@ -275,18 +275,18 @@ groupMasks:
   RangeAndFilterConfig:
     description: Available settings to set the range (Volt) and LowPass filter cutoff (Hz) of the ADC.
     values:
-      Range5V_LowPass1k5Hz: 0x06
-      Range5V_LowPass3kHz: 0x05
-      Range5V_LowPass6kHz: 0x04
-      Range5V_LowPass10k3Hz: 0x03
-      Range5V_LowPass13k7Hz: 0x02
-      Range5V_LowPass15kHz: 0x01
-      Range10V_LowPass1k5Hz: 0x16
-      Range10V_LowPass3kHz: 0x15
-      Range10V_LowPass6kHz: 0x14
-      Range10V_LowPass11k9Hz: 0x13
-      Range10V_LowPass18k5Hz: 0x12
-      Range10V_LowPass22kHz: 0x11
+      Range5VLowPass1500Hz: 0x06
+      Range5VLowPass3000Hz: 0x05
+      Range5VLowPass6000Hz: 0x04
+      Range5VLowPass10300Hz: 0x03
+      Range5VLowPass13700Hz: 0x02
+      Range5VLowPass15000Hz: 0x01
+      Range10VLowPass1500Hz: 0x16
+      Range10VLowPass3000Hz: 0x15
+      Range10VLowPass6000Hz: 0x14
+      Range10VLowPass11900Hz: 0x13
+      Range10VLowPass18500Hz: 0x12
+      Range10VLowPass22000Hz: 0x11
   SamplingRateMode:
     description: Available sampling frequency settings of the ADC.
     values:
