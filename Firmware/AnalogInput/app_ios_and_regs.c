@@ -16,13 +16,13 @@ void init_ios(void)
 	io_set_int(&PORTD, INT_LEVEL_LOW, 0, (1<<1), false);                 // BUSY
 
 	/* Configure output pins */
-	io_pin2out(&PORTB, 1, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // DO3
-	io_pin2out(&PORTA, 0, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // DO2
+	io_pin2out(&PORTA, 0, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // DO0
 	io_pin2out(&PORTA, 1, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // DO1
-	io_pin2out(&PORTA, 2, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // DO0
+	io_pin2out(&PORTA, 2, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // DO2
+	io_pin2out(&PORTA, 3, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // DO3
+	io_pin2out(&PORTC, 4, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // CS_ADC
 	io_pin2out(&PORTC, 0, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // CONVSTA
 	io_pin2out(&PORTC, 1, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // CONVSTB
-	io_pin2out(&PORTC, 4, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // CS_ADC
 	io_pin2out(&PORTC, 5, OUT_IO_DIGITAL, IN_EN_IO_DIS);                 // MOSI
 	io_pin2out(&PORTC, 7, OUT_IO_DIGITAL, IN_EN_IO_DIS);                 // SCK
 	io_pin2out(&PORTD, 0, OUT_IO_WIREDAND, IN_EN_IO_EN);                 // RESET
@@ -32,12 +32,12 @@ void init_ios(void)
 	io_pin2out(&PORTA, 4, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // RANGE
 
 	/* Initialize output pins */
-	clr_DO3;
-	clr_DO2;
-	clr_DO1;
 	clr_DO0;
+	clr_DO1;
+	clr_DO2;
+	clr_DO3;
 	set_CS_ADC;
-	clr_CONVST;
+	clr_CONVSTA;
 	clr_CONVSTB;
 	clr_MOSI;
 	clr_SCK;

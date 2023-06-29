@@ -17,12 +17,13 @@ void init_ios(void);
 /************************************************************************/
 /* Definition of output pins                                            */
 /************************************************************************/
-// DO3                    Description: Output DO0
-// DO2                    Description: Output DO1
-// DO1                    Description: Output DO2
-// DO0                    Description: Output DO3
+// DO0                    Description: Output DO0
+// DO1                    Description: Output DO1
+// DO2                    Description: Output DO2
+// DO3                    Description: Output DO3
 // CS_ADC                 Description: Chip select
-// CONVST                 Description: Convert
+// CONVSTA                Description: Convert
+// CONVSTB                Description: Convert
 // MOSI                   Description: Serial data input
 // SCK                    Description: Serial data clock
 // RESET                  Description: Reset
@@ -31,17 +32,11 @@ void init_ios(void);
 // OS2                    Description: Oversampling bit 2
 // RANGE                  Description: Selects range 5 or 10V
 
-/* DO3 */
-#define set_DO3 set_io(PORTB, 1)
-#define clr_DO3 clear_io(PORTB, 1)
-#define tgl_DO3 toggle_io(PORTB, 1)
-#define read_DO3 read_io(PORTB, 1)
-
-/* DO2 */
-#define set_DO2 set_io(PORTA, 0)
-#define clr_DO2 clear_io(PORTA, 0)
-#define tgl_DO2 toggle_io(PORTA, 0)
-#define read_DO2 read_io(PORTA, 0)
+/* DO0 */
+#define set_DO0 set_io(PORTA, 0)
+#define clr_DO0 clear_io(PORTA, 0)
+#define tgl_DO0 toggle_io(PORTA, 0)
+#define read_DO0 read_io(PORTA, 0)
 
 /* DO1 */
 #define set_DO1 set_io(PORTA, 1)
@@ -49,30 +44,35 @@ void init_ios(void);
 #define tgl_DO1 toggle_io(PORTA, 1)
 #define read_DO1 read_io(PORTA, 1)
 
-/* DO0 */
-#define set_DO0 set_io(PORTA, 2)
-#define clr_DO0 clear_io(PORTA, 2)
-#define tgl_DO0 toggle_io(PORTA, 2)
-#define read_DO0 read_io(PORTA, 2)
+/* DO2 */
+#define set_DO2 set_io(PORTA, 2)
+#define clr_DO2 clear_io(PORTA, 2)
+#define tgl_DO2 toggle_io(PORTA, 2)
+#define read_DO2 read_io(PORTA, 2)
+
+/* DO3 */
+#define set_DO3 set_io(PORTA, 3)
+#define clr_DO3 clear_io(PORTA, 3)
+#define tgl_DO3 toggle_io(PORTA, 3)
+#define read_DO3 read_io(PORTA, 3)
 
 /* CS_ADC */
-#define set_CS_ADC clear_io(PORTC, 4) 
+#define set_CS_ADC clear_io(PORTC, 4)
 #define clr_CS_ADC set_io(PORTC, 4)
 #define tgl_CS_ADC toggle_io(PORTC, 4)
 #define read_CS_ADC read_io(PORTC, 4)
 
 /* CONVSTA */
-#define set_CONVST set_io(PORTC, 0) 
-#define clr_CONVST clear_io(PORTC, 0)
-#define tgl_CONVST toggle_io(PORTC, 0)
-#define read_CONVST read_io(PORTC, 0)
+#define set_CONVSTA set_io(PORTC, 0)
+#define clr_CONVSTA clear_io(PORTC, 0)
+#define tgl_CONVSTA toggle_io(PORTC, 0)
+#define read_CONVSTA read_io(PORTC, 0)
 
 /* CONVSTB */
-#define set_CONVSTB set_io(PORTC, 1) 
+#define set_CONVSTB set_io(PORTC, 1)
 #define clr_CONVSTB clear_io(PORTC, 1)
 #define tgl_CONVSTB toggle_io(PORTC, 1)
 #define read_CONVSTB read_io(PORTC, 1)
-
 
 /* MOSI */
 #define set_MOSI set_io(PORTC, 5)
