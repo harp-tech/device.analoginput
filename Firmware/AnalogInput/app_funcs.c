@@ -176,8 +176,10 @@ bool app_write_REG_ANALOG_INPUTS(void *a)
 /************************************************************************/
 void app_read_REG_DI0(void)
 {
-	//app_regs.REG_DI0 = 0;
-
+	if (read_DI0)
+		app_regs.REG_DI0 = B_DI0;
+	else
+		app_regs.REG_DI0 = 0;
 }
 
 bool app_write_REG_DI0(void *a)
