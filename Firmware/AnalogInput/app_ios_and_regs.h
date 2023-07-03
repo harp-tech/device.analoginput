@@ -196,7 +196,7 @@ typedef struct
 #define ADD_REG_SAMPLE_FREQUENCY            38 // U8     Sample rate of analog conversions
 #define ADD_REG_DI0_CONF                    39 // U8     Configuration of the digital input 0 (DI0)
 #define ADD_REG_DO0_CONF                    40 // U8     Configuration of the digital output 0 (DO0)
-#define ADD_REG_DO0_PULSE                   41 // U8     Pulse for the digital output 0 (DO0) [1:255]
+#define ADD_REG_DO0_PULSE                   41 // U8     Pulse for the digital output 0 (DO0) [1:250]
 #define ADD_REG_DO_SET                      42 // U8     Set the digital outputs
 #define ADD_REG_DO_CLEAR                    43 // U8     Clear the digital outputs
 #define ADD_REG_DO_TOGGLE                   44 // U8     Toggle the digital outputs

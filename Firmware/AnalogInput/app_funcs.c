@@ -312,6 +312,12 @@ void app_read_REG_DO0_PULSE(void)
 bool app_write_REG_DO0_PULSE(void *a)
 {
 	uint8_t reg = *((uint8_t*)a);
+	
+	if (reg < 1)
+		return false;
+		
+	if (reg > 250)
+		return false;
 
 	app_regs.REG_DO0_PULSE = reg;
 	return true;
