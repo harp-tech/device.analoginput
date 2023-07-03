@@ -25,7 +25,7 @@ void init_ios(void)
 	io_pin2out(&PORTC, 1, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // CONVSTB
 	io_pin2out(&PORTC, 5, OUT_IO_DIGITAL, IN_EN_IO_DIS);                 // MOSI
 	io_pin2out(&PORTC, 7, OUT_IO_DIGITAL, IN_EN_IO_DIS);                 // SCK
-	io_pin2out(&PORTD, 0, OUT_IO_WIREDAND, IN_EN_IO_EN);                 // RESET
+	io_pin2out(&PORTD, 0, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // RESET
 	io_pin2out(&PORTD, 2, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // OS0
 	io_pin2out(&PORTD, 3, OUT_IO_DIGITAL, IN_EN_IO_DIS);                 // OS1
 	io_pin2out(&PORTD, 4, OUT_IO_DIGITAL, IN_EN_IO_DIS);                 // OS2
