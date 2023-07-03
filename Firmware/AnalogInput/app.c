@@ -62,6 +62,8 @@ void core_callback_catastrophic_error_detected(void)
 /************************************************************************/
 /* Initialization Callbacks                                             */
 /************************************************************************/
+extern bool previous_DIO;
+
 void core_callback_1st_config_hw_after_boot(void)
 {
 	/* Initialize IOs */
@@ -78,7 +80,17 @@ void core_callback_1st_config_hw_after_boot(void)
 	set_RESET;
 	_delay_ms(1);
 	clr_RESET;
-	_delay_ms(1);		
+	_delay_ms(1);
+	
+	/* Get initial state of DI0 */
+	if (read_DI0)
+	{
+		previous_DIO = true;
+	}
+	else
+	{
+		previous_DIO = false;
+	}
 }
 
 void core_callback_reset_registers(void)
