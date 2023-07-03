@@ -87,18 +87,6 @@ ISR(PORTB_INT0_vect, ISR_NAKED)
 				case GM_DI0_FALL_START_ACQ:
 					app_regs.REG_START = 1;
 					break;
-				
-				case GM_DI0_FALL_CATCH_SAMPLE:
-					set_CONVSTA;
-					set_CONVSTB;
-					switch (app_regs.REG_TRIGGER_DESTINY)
-					{
-						case GM_TRIG_TO_DO0: set_DO0; break;
-						case GM_TRIG_TO_DO1: set_DO1; break;
-						case GM_TRIG_TO_DO2: set_DO2; break;
-						case GM_TRIG_TO_DO3: set_DO3; break;
-					}
-					break;
 			}
 		}
 	}	
