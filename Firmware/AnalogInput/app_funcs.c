@@ -334,11 +334,23 @@ bool app_write_REG_DO_SET(void *a)
 {
 	uint8_t reg = *((uint8_t*)a);
 	
-	//PORTA_OUTSET = reg & 0x0F;
-	//if (reg & B_DO0)
-	//	pulse_counter_ms = app_regs.REG_DO0_PULSE + 1;
-
-	app_regs.REG_DO_WRITE = PORTA_OUT & 0x0F;
+	if ((reg & B_DO0) && (app_regs.REG_TRIGGER_DESTINY != GM_TRIG_TO_DO0))
+	{
+		if (app_regs.REG_DO0_CONF == GM_DO0_DIG)
+		{
+			set_DO0;
+		}
+		if (app_regs.REG_DO0_CONF == GM_DO0_PULSE)
+		{
+			set_DO0;
+			pulse_counter_ms = app_regs.REG_DO0_PULSE + 1;
+		}
+	}
+	
+	if ((reg & B_DO1) && (app_regs.REG_TRIGGER_DESTINY != GM_TRIG_TO_DO1)) set_DO1;
+	if ((reg & B_DO2) && (app_regs.REG_TRIGGER_DESTINY != GM_TRIG_TO_DO2)) set_DO2;
+	if ((reg & B_DO3) && (app_regs.REG_TRIGGER_DESTINY != GM_TRIG_TO_DO3)) set_DO3;
+	
 	app_regs.REG_DO_SET = reg;
 	return true;
 }
@@ -352,9 +364,19 @@ bool app_write_REG_DO_CLEAR(void *a)
 {
 	uint8_t reg = *((uint8_t*)a);
 	
-	//PORTA_OUTCLR = reg & 0x0F;
-
-	app_regs.REG_DO_WRITE = PORTA_OUT & 0x0F;
+	if ((reg & B_DO0) && (app_regs.REG_TRIGGER_DESTINY != GM_TRIG_TO_DO0))
+	{
+		if (app_regs.REG_DO0_CONF != GM_DO0_TGL_EACH_SEC)
+		{
+			clr_DO0;
+			pulse_counter_ms = 0;
+		}
+	}
+	
+	if ((reg & B_DO1) && (app_regs.REG_TRIGGER_DESTINY != GM_TRIG_TO_DO1)) clr_DO1;
+	if ((reg & B_DO2) && (app_regs.REG_TRIGGER_DESTINY != GM_TRIG_TO_DO2)) clr_DO2;
+	if ((reg & B_DO3) && (app_regs.REG_TRIGGER_DESTINY != GM_TRIG_TO_DO3)) clr_DO3;
+	
 	app_regs.REG_DO_CLEAR = reg;
 	return true;
 }
@@ -368,13 +390,34 @@ bool app_write_REG_DO_TOGGLE(void *a)
 {
 	uint8_t reg = *((uint8_t*)a);
 	
-	//if (!read_DO0)
-	//	if (reg & B_DO0)
-	//		pulse_counter_ms = app_regs.REG_DO0_PULSE + 1;
-		
-	//PORTA_OUTTGL = reg & 0x0F;
+	if ((reg & B_DO0) && (app_regs.REG_TRIGGER_DESTINY != GM_TRIG_TO_DO0))
+	{
+		if (read_DO0)
+		{
+			if (app_regs.REG_DO0_CONF != GM_DO0_TGL_EACH_SEC)
+			{
+				clr_DO0;
+				pulse_counter_ms = 0;
+			}
+		}
+		else
+		{
+			if (app_regs.REG_DO0_CONF == GM_DO0_DIG)
+			{
+				set_DO0;
+			}
+			if (app_regs.REG_DO0_CONF == GM_DO0_PULSE)
+			{
+				set_DO0;
+				pulse_counter_ms = app_regs.REG_DO0_PULSE + 1;
+			}
+		}
+	}
 	
-	app_regs.REG_DO_WRITE = PORTA_OUT & 0x0F;
+	if ((reg & B_DO1) && (app_regs.REG_TRIGGER_DESTINY != GM_TRIG_TO_DO1)) tgl_DO1;
+	if ((reg & B_DO2) && (app_regs.REG_TRIGGER_DESTINY != GM_TRIG_TO_DO2)) tgl_DO2;
+	if ((reg & B_DO3) && (app_regs.REG_TRIGGER_DESTINY != GM_TRIG_TO_DO3)) tgl_DO3;
+	
 	app_regs.REG_DO_TOGGLE = reg;
 	return true;
 }
@@ -383,15 +426,35 @@ bool app_write_REG_DO_TOGGLE(void *a)
 /************************************************************************/
 /* REG_DO_WRITE                                                         */
 /************************************************************************/
-void app_read_REG_DO_WRITE(void) {}
+void app_read_REG_DO_WRITE(void)
+{
+	app_regs.REG_DO_WRITE = PORTA_IN & 0x0F;
+}
 bool app_write_REG_DO_WRITE(void *a)
 {
 	uint8_t reg = *((uint8_t*)a);
 	
-	//PORTA_OUT = (PORTA_OUT & (~0x0F)) | (reg & 0x0F);
+	if ((app_regs.REG_TRIGGER_DESTINY != GM_TRIG_TO_DO0) && (app_regs.REG_DO0_CONF != GM_DO0_TGL_EACH_SEC))
+	{
+		if (reg & B_DO0)
+		{
+			set_DO0;
+			
+			if (app_regs.REG_DO0_CONF == GM_DO0_PULSE)
+			{
+				pulse_counter_ms = app_regs.REG_DO0_PULSE + 1;
+			}
+		}
+		else
+		{
+			clr_DO0;
+			pulse_counter_ms = 0;
+		}
+	}
 	
-	//if (reg & B_DO0)
-	//	pulse_counter_ms = app_regs.REG_DO0_PULSE + 1;
+	if ((reg & B_DO1) && (app_regs.REG_TRIGGER_DESTINY != GM_TRIG_TO_DO1)) set_DO1; else clr_DO1;
+	if ((reg & B_DO2) && (app_regs.REG_TRIGGER_DESTINY != GM_TRIG_TO_DO2)) set_DO2; else clr_DO2;
+	if ((reg & B_DO3) && (app_regs.REG_TRIGGER_DESTINY != GM_TRIG_TO_DO3)) set_DO3; else clr_DO3;
 
 	app_regs.REG_DO_WRITE = PORTA_OUT & 0x0F;
 	return true;
