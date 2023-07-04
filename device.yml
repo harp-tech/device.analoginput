@@ -299,7 +299,6 @@ groupMasks:
       StartOnRisingEdge: 1
       StartOnFallingEdge: 2
       SampleOnRisingEdge: 3
-      SampleOnFallingEdge: 4
   SyncConfig:
     description: Available configurations when using DO0 pin to report firmware events.
     values:
