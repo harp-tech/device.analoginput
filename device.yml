@@ -136,7 +136,6 @@ registers:
     access: Write
     type: U8
     maskType: AdcChannel
-    visibility: private
     description: Target ADC channel that will be used to trigger a threshold event on DO0 pin.
   DO1TargetChannel:
     <<: *targetchannel
@@ -166,7 +165,6 @@ registers:
     address: 66
     access: Write
     type: S16
-    visibility: private
     description: Value used to threshold an ADC read, and trigger DO0 pin.
   DO1Threshold:
     <<: *thresholdvalue
@@ -196,7 +194,6 @@ registers:
     address: 74
     access: Write
     type: U16
-    visibility: private
     defaultValue: 0
     description: Time (ms) above threshold value that is required to trigger a DO0 pin event.
   DO1TimeAboveThreshold:
@@ -226,7 +223,6 @@ registers:
   DO0TimeBelowThreshold:
     <<: *bufferedthreshold
     address: 82
-    visibility: private
     description: Time (ms) below threshold value that is required to trigger a DO0 pin event.
   DO1TimeBelowThreshold:
     <<: *bufferedthreshold
