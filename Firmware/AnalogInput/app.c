@@ -30,7 +30,7 @@ void hwbp_app_initialize(void)
     uint8_t hwH = 1;
     uint8_t hwL = 0;
     uint8_t fwH = 1;
-    uint8_t fwL = 0;
+    uint8_t fwL = 2;
     uint8_t ass = 0;
     
    	/* Start core */
@@ -42,7 +42,10 @@ void hwbp_app_initialize(void)
         (uint8_t*)(&app_regs),
         APP_NBYTES_OF_REG_BANK,
         APP_REGS_ADD_MAX - APP_REGS_ADD_MIN + 1,
-        default_device_name
+        default_device_name,
+        false,		// The device is _not_ able to repeat the harp timestamp clock
+        false,		// The device is _not_ able to generate the harp timestamp clock
+		  0
     );
 }
 
@@ -62,7 +65,11 @@ void core_callback_catastrophic_error_detected(void)
 /************************************************************************/
 /* Initialization Callbacks                                             */
 /************************************************************************/
-void core_callback_1st_config_hw_after_boot(void)
+extern bool previous_DIO;
+
+void core_callback_define_clock_default(void) {}
+
+void core_callback_initialize_hardware(void)
 {
 	/* Initialize IOs */
 	/* Don't delete this function!!! */
@@ -78,7 +85,17 @@ void core_callback_1st_config_hw_after_boot(void)
 	set_RESET;
 	_delay_ms(1);
 	clr_RESET;
-	_delay_ms(1);		
+	_delay_ms(1);
+	
+	/* Get initial state of DI0 */
+	if (read_DI0)
+	{
+		previous_DIO = true;
+	}
+	else
+	{
+		previous_DIO = false;
+	}
 }
 
 void core_callback_reset_registers(void)
@@ -246,6 +263,14 @@ void core_callback_t_1ms(void)
 		}
 	}
 }
+
+/************************************************************************/
+/* Callbacks: clock control                                             */
+/************************************************************************/
+void core_callback_clock_to_repeater(void) {}
+void core_callback_clock_to_generator(void) {}
+void core_callback_clock_to_unlock(void) {}
+void core_callback_clock_to_lock(void) {}
 
 /************************************************************************/
 /* Callbacks: uart control                                              */

@@ -3,7 +3,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/harp-tech/reflex-generator/main/schema/device.json
 device: AnalogInput
 whoAmI: 1236
-firmwareVersion: "1.0"
+firmwareVersion: "1.2"
 hardwareTargets: "1.0"
 registers:
   AcquisitionState:
@@ -71,7 +71,7 @@ registers:
     access: Write
     type: U8
     minValue: 1
-    maxValue: 255
+    maxValue: 250
     description: Pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.
   DigitalOutputSet: &output
     address: 42
@@ -136,7 +136,6 @@ registers:
     access: Write
     type: U8
     maskType: AdcChannel
-    visibility: private
     description: Target ADC channel that will be used to trigger a threshold event on DO0 pin.
   DO1TargetChannel:
     <<: *targetchannel
@@ -166,7 +165,6 @@ registers:
     address: 66
     access: Write
     type: S16
-    visibility: private
     description: Value used to threshold an ADC read, and trigger DO0 pin.
   DO1Threshold:
     <<: *thresholdvalue
@@ -196,7 +194,6 @@ registers:
     address: 74
     access: Write
     type: U16
-    visibility: private
     defaultValue: 0
     description: Time (ms) above threshold value that is required to trigger a DO0 pin event.
   DO1TimeAboveThreshold:
@@ -226,7 +223,6 @@ registers:
   DO0TimeBelowThreshold:
     <<: *bufferedthreshold
     address: 82
-    visibility: private
     description: Time (ms) below threshold value that is required to trigger a DO0 pin event.
   DO1TimeBelowThreshold:
     <<: *bufferedthreshold
@@ -299,7 +295,6 @@ groupMasks:
       StartOnRisingEdge: 1
       StartOnFallingEdge: 2
       SampleOnRisingEdge: 3
-      SampleOnFallingEdge: 4
   SyncConfig:
     description: Available configurations when using DO0 pin to report firmware events.
     values:

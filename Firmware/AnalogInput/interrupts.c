@@ -87,18 +87,6 @@ ISR(PORTB_INT0_vect, ISR_NAKED)
 				case GM_DI0_FALL_START_ACQ:
 					app_regs.REG_START = 1;
 					break;
-				
-				case GM_DI0_FALL_CATCH_SAMPLE:
-					set_CONVSTA;
-					set_CONVSTB;
-					switch (app_regs.REG_TRIGGER_DESTINY)
-					{
-						case GM_TRIG_TO_DO0: set_DO0; break;
-						case GM_TRIG_TO_DO1: set_DO1; break;
-						case GM_TRIG_TO_DO2: set_DO2; break;
-						case GM_TRIG_TO_DO3: set_DO3; break;
-					}
-					break;
 			}
 		}
 	}	
@@ -167,31 +155,15 @@ uint16_t ch3_down_counter = 0;
 /* This functions needs 52 us when using the 4 thresholds */
 void process_thresholds(void)
 {	
-	int16_t output_thresholds[4];
-	
 	bool send_event = false;
 	
 	/* Clear changed flags and update register to current values */
-	app_regs.REG_DO_WRITE = PORTA_IN & 0x0F;
-	
-	
-	/* Map analog values into threshold comparison */
-	for (uint8_t i = 0; i < 4; i++)
-	{
-		switch (*((&app_regs.REG_DO0_CH)+i))
-		{
-			case GM_ANA0: output_thresholds[i] = app_regs.REG_ANALOG_INPUTS[0]; break;
-			case GM_ANA1: output_thresholds[i] = app_regs.REG_ANALOG_INPUTS[1]; break;
-			case GM_ANA2: output_thresholds[i] = app_regs.REG_ANALOG_INPUTS[2]; break;
-			case GM_ANA3: output_thresholds[i] = app_regs.REG_ANALOG_INPUTS[3]; break;
-		}
-	}
-	
+	app_regs.REG_DO_WRITE = PORTA_IN & 0x0F;	
 	
 	/* Output channel 0 */
-	if (app_regs.REG_DO0_CH != GM_NOT_USED)
+	if ((app_regs.REG_DO0_CH != GM_NOT_USED) && (app_regs.REG_DO0_CONF != GM_DO0_TGL_EACH_SEC))
 	{
-		if (output_thresholds[0] >= app_regs.REG_DO0_TH_VALUE)
+		if (app_regs.REG_ANALOG_INPUTS[app_regs.REG_DO0_CH] >= app_regs.REG_DO0_TH_VALUE)
 		{
 			if (++ch0_up_counter == app_regs.REG_DO0_TH_UP_SAMPLES + 1)
 			{
@@ -225,7 +197,7 @@ void process_thresholds(void)
 	/* Output channel 1 */
 	if (app_regs.REG_DO1_CH != GM_NOT_USED)
 	{
-		if (output_thresholds[1] >= app_regs.REG_DO1_TH_VALUE)
+		if (app_regs.REG_ANALOG_INPUTS[app_regs.REG_DO1_CH] >= app_regs.REG_DO1_TH_VALUE)
 		{
 			if (++ch1_up_counter == app_regs.REG_DO1_TH_UP_SAMPLES + 1)
 			{
@@ -259,7 +231,7 @@ void process_thresholds(void)
 	/* Output channel 2 */
 	if (app_regs.REG_DO2_CH != GM_NOT_USED)
 	{
-		if (output_thresholds[2] >= app_regs.REG_DO2_TH_VALUE)
+		if (app_regs.REG_ANALOG_INPUTS[app_regs.REG_DO2_CH] >= app_regs.REG_DO2_TH_VALUE)
 		{
 			if (++ch2_up_counter == app_regs.REG_DO2_TH_UP_SAMPLES + 1)
 			{
@@ -293,7 +265,7 @@ void process_thresholds(void)
 	/* Output channel 3 */
 	if (app_regs.REG_DO3_CH != GM_NOT_USED)
 	{
-		if (output_thresholds[3] >= app_regs.REG_DO3_TH_VALUE)
+		if (app_regs.REG_ANALOG_INPUTS[app_regs.REG_DO3_CH] >= app_regs.REG_DO3_TH_VALUE)
 		{
 			if (++ch3_up_counter == app_regs.REG_DO3_TH_UP_SAMPLES + 1)
 			{

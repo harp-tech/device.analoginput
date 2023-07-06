@@ -196,7 +196,7 @@ typedef struct
 #define ADD_REG_SAMPLE_FREQUENCY            38 // U8     Sample rate of analog conversions
 #define ADD_REG_DI0_CONF                    39 // U8     Configuration of the digital input 0 (DI0)
 #define ADD_REG_DO0_CONF                    40 // U8     Configuration of the digital output 0 (DO0)
-#define ADD_REG_DO0_PULSE                   41 // U8     Pulse for the digital output 0 (DO0) [1:255]
+#define ADD_REG_DO0_PULSE                   41 // U8     Pulse for the digital output 0 (DO0) [1:250]
 #define ADD_REG_DO_SET                      42 // U8     Set the digital outputs
 #define ADD_REG_DO_CLEAR                    43 // U8     Clear the digital outputs
 #define ADD_REG_DO_TOGGLE                   44 // U8     Toggle the digital outputs
@@ -279,12 +279,11 @@ typedef struct
 #define MSK_SAMPLE_FREQUENCY               (3<<0)       // 
 #define GM_1KHZ                            0x00         // 
 #define GM_2KHZ                            0x01         // 
-#define MSK_DI0_SEL                        (7<<0)       // 
+#define MSK_DI0_SEL                        (3<<0)       // 
 #define GM_DI0_SYNC                        (0<<0)       // Use as a pure digital input
 #define GM_DI0_RISE_START_ACQ              (1<<0)       // Start acquisition when rising edge and stop when falling edge
 #define GM_DI0_FALL_START_ACQ              (2<<0)       // Start acquisition when falling edge and stop when rising edge
 #define GM_DI0_RISE_CATCH_SAMPLE           (3<<0)       // Acquire a sample when a rising edge is detected
-#define GM_DI0_FALL_CATCH_SAMPLE           (4<<0)       // Acquire a sample when a falling edge is detected
 #define MSK_DO0_SEL                        (3<<0)       // 
 #define GM_DO0_DIG                         (0<<0)       // Use as a pure digital output like all the other digital outputs
 #define GM_DO0_TGL_EACH_SEC                (1<<0)       // Toggle each second when acquiring
