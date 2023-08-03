@@ -8,7 +8,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">true</GeneratePackageOnBuild>
     <Description>Bonsai Library containing interfaces for data acquisition and control of Harp AnalogInput devices.</Description>
-    <GenerateDocumentationFile Condition="'$(Configuration)'=='Release'">true</GenerateDocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageTags>Harp AnalogInput Bonsai Rx</PackageTags>
     <PackageProjectUrl>https://harp-tech.org</PackageProjectUrl>
     <RepositoryUrl>https://github.com/harp-tech/device.analoginput.git</RepositoryUrl>
