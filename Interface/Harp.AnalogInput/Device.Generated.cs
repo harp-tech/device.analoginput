@@ -40,6 +40,8 @@ namespace Harp.AnalogInput
             { 32, typeof(AcquisitionState) },
             { 33, typeof(AnalogData) },
             { 34, typeof(DigitalInputState) },
+            { 35, typeof(Reserved0) },
+            { 36, typeof(Reserved1) },
             { 37, typeof(RangeAndFilter) },
             { 38, typeof(SamplingRate) },
             { 39, typeof(DI0Trigger) },
@@ -49,24 +51,87 @@ namespace Harp.AnalogInput
             { 43, typeof(DigitalOutputClear) },
             { 44, typeof(DigitalOutputToggle) },
             { 45, typeof(DigitalOutputState) },
+            { 46, typeof(Reserved2) },
+            { 47, typeof(Reserved3) },
             { 48, typeof(SyncOutput) },
+            { 49, typeof(Reserved4) },
+            { 50, typeof(Reserved5) },
+            { 51, typeof(Reserved6) },
+            { 52, typeof(Reserved7) },
+            { 53, typeof(Reserved8) },
+            { 54, typeof(Reserved9) },
+            { 55, typeof(Reserved10) },
+            { 56, typeof(Reserved11) },
+            { 57, typeof(Reserved12) },
             { 58, typeof(DO0TargetChannel) },
             { 59, typeof(DO1TargetChannel) },
             { 60, typeof(DO2TargetChannel) },
             { 61, typeof(DO3TargetChannel) },
+            { 62, typeof(Reserved13) },
+            { 63, typeof(Reserved14) },
+            { 64, typeof(Reserved15) },
+            { 65, typeof(Reserved16) },
             { 66, typeof(DO0Threshold) },
             { 67, typeof(DO1Threshold) },
             { 68, typeof(DO2Threshold) },
             { 69, typeof(DO3Threshold) },
+            { 70, typeof(Reserved17) },
+            { 71, typeof(Reserved18) },
+            { 72, typeof(Reserved19) },
+            { 73, typeof(Reserved20) },
             { 74, typeof(DO0TimeAboveThreshold) },
             { 75, typeof(DO1TimeAboveThreshold) },
             { 76, typeof(DO2TimeAboveThreshold) },
             { 77, typeof(DO3TimeAboveThreshold) },
+            { 78, typeof(Reserved21) },
+            { 79, typeof(Reserved22) },
+            { 80, typeof(Reserved23) },
+            { 81, typeof(Reserved24) },
             { 82, typeof(DO0TimeBelowThreshold) },
             { 83, typeof(DO1TimeBelowThreshold) },
             { 84, typeof(DO2TimeBelowThreshold) },
-            { 85, typeof(DO3TimeBelowThreshold) }
+            { 85, typeof(DO3TimeBelowThreshold) },
+            { 86, typeof(Reserved25) },
+            { 87, typeof(Reserved26) },
+            { 88, typeof(Reserved27) },
+            { 89, typeof(Reserved28) },
+            { 90, typeof(Reserved29) }
         };
+
+        /// <summary>
+        /// Gets the contents of the metadata file describing the <see cref="AnalogInput"/>
+        /// device registers.
+        /// </summary>
+        public static readonly string Metadata = GetDeviceMetadata();
+
+        static string GetDeviceMetadata()
+        {
+            var deviceType = typeof(Device);
+            using var metadataStream = deviceType.Assembly.GetManifestResourceStream($"{deviceType.Namespace}.device.yml");
+            using var streamReader = new System.IO.StreamReader(metadataStream);
+            return streamReader.ReadToEnd();
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that returns the contents of the metadata file
+    /// describing the <see cref="AnalogInput"/> device registers.
+    /// </summary>
+    [Description("Returns the contents of the metadata file describing the AnalogInput device registers.")]
+    public partial class GetMetadata : Source<string>
+    {
+        /// <summary>
+        /// Returns an observable sequence with the contents of the metadata file
+        /// describing the <see cref="AnalogInput"/> device registers.
+        /// </summary>
+        /// <returns>
+        /// A sequence with a single <see cref="string"/> object representing the
+        /// contents of the metadata file.
+        /// </returns>
+        public override IObservable<string> Generate()
+        {
+            return Observable.Return(Device.Metadata);
+        }
     }
 
     /// <summary>
@@ -660,6 +725,50 @@ namespace Harp.AnalogInput
         {
             return DigitalInputState.GetTimestampedPayload(message);
         }
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved0
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved0"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 35;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved0"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved0"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved1
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved1"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 36;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved1"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved1"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
     }
 
     /// <summary>
@@ -1535,6 +1644,50 @@ namespace Harp.AnalogInput
     }
 
     /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved2
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved2"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 46;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved2"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved2"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved3
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved3"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 47;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved3"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved3"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
     /// Represents a register that digital output that will be set when acquisition starts.
     /// </summary>
     [Description("Digital output that will be set when acquisition starts.")]
@@ -1629,6 +1782,204 @@ namespace Harp.AnalogInput
         {
             return SyncOutput.GetTimestampedPayload(message);
         }
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved4
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved4"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 49;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved4"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved4"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved5
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved5"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 50;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved5"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved5"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved6
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved6"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 51;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved6"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved6"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved7
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved7"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 52;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved7"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved7"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved8
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved8"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 53;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved8"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved8"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved9
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved9"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 54;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved9"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved9"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved10
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved10"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 55;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved10"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved10"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved11
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved11"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 56;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved11"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved11"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved12
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved12"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 57;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved12"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved12"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
     }
 
     /// <summary>
@@ -2020,6 +2371,94 @@ namespace Harp.AnalogInput
     }
 
     /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved13
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved13"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 62;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved13"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved13"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved14
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved14"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 63;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved14"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved14"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved15
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved15"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 64;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved15"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved15"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved16
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved16"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 65;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved16"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved16"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
     /// Represents a register that value used to threshold an ADC read, and trigger DO0 pin.
     /// </summary>
     [Description("Value used to threshold an ADC read, and trigger DO0 pin.")]
@@ -2401,6 +2840,94 @@ namespace Harp.AnalogInput
         {
             return DO3Threshold.GetTimestampedPayload(message);
         }
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved17
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved17"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 70;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved17"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved17"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved18
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved18"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 71;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved18"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved18"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved19
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved19"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 72;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved19"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved19"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved20
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved20"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 73;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved20"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved20"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
     }
 
     /// <summary>
@@ -2788,6 +3315,94 @@ namespace Harp.AnalogInput
     }
 
     /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved21
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved21"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 78;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved21"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved21"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved22
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved22"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 79;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved22"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved22"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved23
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved23"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 80;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved23"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved23"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved24
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved24"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 81;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved24"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved24"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
     /// Represents a register that time (ms) below threshold value that is required to trigger a DO0 pin event.
     /// </summary>
     [Description("Time (ms) below threshold value that is required to trigger a DO0 pin event.")]
@@ -3169,6 +3784,116 @@ namespace Harp.AnalogInput
         {
             return DO3TimeBelowThreshold.GetTimestampedPayload(message);
         }
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved25
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved25"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 86;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved25"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved25"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved26
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved26"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 87;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved26"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved26"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved27
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved27"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 88;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved27"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved27"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved28
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved28"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 89;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved28"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved28"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved29
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved29"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 90;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved29"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved29"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
     }
 
     /// <summary>
@@ -4910,6 +5635,24 @@ namespace Harp.AnalogInput
         /// 
         /// </summary>
         public short Channel3;
+
+        /// <summary>
+        /// Returns a <see cref="string"/> that represents the payload of
+        /// the AnalogData register.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="string"/> that represents the payload of the
+        /// AnalogData register.
+        /// </returns>
+        public override string ToString()
+        {
+            return "AnalogDataPayload { " +
+                "Channel0 = " + Channel0 + ", " +
+                "Channel1 = " + Channel1 + ", " +
+                "Channel2 = " + Channel2 + ", " +
+                "Channel3 = " + Channel3 + " " +
+            "}";
+        }
     }
 
     /// <summary>
